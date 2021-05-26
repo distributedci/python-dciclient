@@ -470,8 +470,9 @@ def parse_arguments(args, environment={}):
     p.add_argument("--url", help="URL to look for the component")
     _create_boolean_flags(p, "--active/--no-active", default=True, dest="state")
     p.add_argument("--data", default="{}", help="Data to pass (JSON)")
-    p.add_argument('--released-at', default=None, type=_date_isoformat,
-                   help="The release date")
+    p.add_argument(
+        "--released-at", default=None, type=_date_isoformat, help="The release date"
+    )
     p.set_defaults(command="component-create")
 
     p = subparsers.add_parser(
@@ -897,6 +898,102 @@ def parse_arguments(args, environment={}):
         "--force", default=False, action="store_true", help="Purge resources."
     )
     p.set_defaults(command="purge")
+
+    # agent commands
+    p = subparsers.add_parser(
+        "agent-list",
+        help="Lists installed DCI agents.",
+        parents=[base_parser],
+        aliases=["al"],
+    )
+    p.set_defaults(command="agent-list")
+
+    p = subparsers.add_parser(
+        "agent-run",
+        help="Execute agent run ASAP.",
+        parents=[base_parser],
+        aliases=["ar"],
+    )
+    p.add_argument(
+        "--config-dir",
+        help="Override agent's config dir. Default differs per agent.",
+        metavar="PATH",
+    )
+    p.add_argument(
+        "--inventory",
+        help="Inventory file to pass to agent run.",
+        metavar="FILE",
+        default="hosts",
+    )
+    p.add_argument(
+        "--settings",
+        help="Settings file to pass to agent run.",
+        metavar="FILE",
+        default="settings.yml",
+    )
+    p.add_argument(
+        "--prefix", help="Prefix settings and inventory files with this string."
+    )
+    p.add_argument("--log-dir", help="Output output files to this dir.", metavar="PATH")
+    p.add_argument("agent", help="DCI agent to run")
+    p.set_defaults(command="agent-run")
+
+    p = subparsers.add_parser(
+        "agent-queue",
+        help="Queue DCI agent job.",
+        parents=[base_parser],
+        aliases=["aq"],
+    )
+    p.add_argument(
+        "--config-dir",
+        help="Override agent's config dir. Default differs per agent.",
+        metavar="PATH",
+    )
+    p.add_argument(
+        "--inventory",
+        help="Inventory file to pass to agent run.",
+        metavar="FILE",
+        default="hosts",
+    )
+    p.add_argument(
+        "--settings",
+        help="Settings file to pass to agent run.",
+        metavar="FILE",
+        default="settings.yml",
+    )
+    p.add_argument(
+        "--prefix", help="Prefix settings and inventory files with this string."
+    )
+    p.add_argument("--log-dir", help="Output output files to this dir.", metavar="PATH")
+    p.add_argument("agent", help="DCI agent to queue")
+    p.set_defaults(command="agent-queue")
+
+    p = subparsers.add_parser(
+        "agent-inspect",
+        help="Inspect agent queue.",
+        parents=[base_parser],
+        aliases=["ai"],
+    )
+    p.set_defaults(command="agent-inspect")
+
+    p = subparsers.add_parser(
+        "agent-cancel",
+        help="Cancel queued agent run.",
+        parents=[base_parser],
+        aliases=["ac"],
+    )
+    p.add_argument(
+        "item", help="Item to remove from the queue (zero-indexed)", type=int
+    )
+    p.set_defaults(command="agent-cancel")
+
+    p = subparsers.add_parser(
+        "agent-kill",
+        help="Kill running agent run.",
+        parents=[base_parser],
+        aliases=["ak"],
+    )
+    p.set_defaults(command="agent-kill")
 
     args = parser.parse_args(args)
     return args

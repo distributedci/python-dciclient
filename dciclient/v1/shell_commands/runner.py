@@ -13,6 +13,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from dciclient.v1.shell_commands import agent
 from dciclient.v1.shell_commands import analytic
 from dciclient.v1.shell_commands import user
 from dciclient.v1.shell_commands import team
@@ -33,6 +34,12 @@ command_function = {
     "analytic-create": analytic.create,
     "analytic-show": analytic.show,
     "analytic-update": analytic.update,
+    "agent-list": agent.list,
+    "agent-run": agent.run,
+    "agent-queue": agent.queue,
+    "agent-inspect": agent.inspect,
+    "agent-cancel": agent.cancel,
+    "agent-kill": agent.kill,
     "user-list": user.list,
     "user-create": user.create,
     "user-show": user.show,
