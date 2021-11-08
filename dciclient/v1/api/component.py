@@ -109,23 +109,6 @@ def file_delete(context, id, file_id, etag):
         context, RESOURCE, id, subresource="files", subresource_id=file_id, etag=etag
     )
 
-
-def list_issues(context, id, **kwargs):
-    return base.list(context, RESOURCE, id=id, subresource="issues", **kwargs)
-
-
-def attach_issue(context, id, url):
-    uri = "%s/%s/%s/issues" % (context.dci_cs_api, RESOURCE, id)
-    data = {"url": url}
-    return context.session.post(uri, json=data)
-
-
-def unattach_issue(context, id, issue_id):
-    return base.delete(
-        context, RESOURCE, id, subresource="issues", subresource_id=issue_id
-    )
-
-
 def add_tag(context, id, name):
     return add_tag_to_resource(context, RESOURCE, id, name)
 
