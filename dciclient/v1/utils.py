@@ -13,7 +13,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
-
+import re
 import csv
 import json
 import prettytable
@@ -110,6 +110,14 @@ def print_prettytable(data, headers=None, skip_columns=[]):
         table.add_row(row)
 
     print(table)
+
+
+def is_valid_file_name(value):
+    s = str(value).strip()
+    s = re.sub(r'(?u)[^-\w.]', '', s)
+    if s in ['', '.', '..']:
+        return False
+    return s == value
 
 
 def sanitize_kwargs(**kwargs):

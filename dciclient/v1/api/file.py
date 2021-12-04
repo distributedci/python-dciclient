@@ -50,6 +50,9 @@ def create(
     elif content is None and not file_path:
         raise Exception("At least one of content or file_path must be specified")
 
+    if not utils.is_valid_file_name(name):
+        raise Exception("Invalid file name")
+
     headers = {
         "DCI-NAME": name,
         "DCI-MIME": mime,

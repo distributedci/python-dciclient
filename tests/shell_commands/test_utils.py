@@ -23,3 +23,23 @@ class TestUtils(object):
         r = utils.flatten(s)
         r.sort()
         assert r == ["a.b.c.d=bob", "jim=123", "rob=34"]
+
+
+def test_escape_invalid_char():
+    assert utils.is_valid_file_name("@\r!.log") is False
+    assert utils.is_valid_file_name("attack)!\r.log") is False
+    assert utils.is_valid_file_name("NASTY!\r.log") is False
+    assert utils.is_valid_file_name("changed.\r.log") is False
+    assert (
+        utils.is_valid_file_name(
+            "SHA256:kUcmk05yBNUvit53RUelIJwCBczNvCeoFVBZ07VU5sE.\r.log"
+        )
+        is False
+    )
+    assert utils.is_valid_file_name("administrator.\r.log") is False
+    assert utils.is_valid_file_name("message.\r.log") is False
+    assert utils.is_valid_file_name("changed.\r.log") is False
+    assert utils.is_valid_file_name("@\n!.log") is False
+    assert utils.is_valid_file_name("@\t!.log") is False
+    assert utils.is_valid_file_name("..") is False
+    assert utils.is_valid_file_name("Ansible..log")
