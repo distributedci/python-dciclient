@@ -130,6 +130,35 @@ Commands:
   user-update                  Update a user.
 ```
 
+
+## How to create components isolated by team
+
+The partners specific components are created through the use of the dcictl CLI. The idea is to leverage
+the dcictl command line and a remoteci that belongs to the team you want to attach a component to.
+
+Here is an example:
+
+### 1. source the remoteci credentials that belongs to the targeted team:
+```console
+$ source myremoteci.rc.sh
+```
+
+### 2. get the remoteci's team id:
+```console
+$ TEAM_ID=$(dcictl --format json team-list| jq '.teams[] | select(.name == "my-team-name") | .id')
+```
+
+### 3. get the topic id on which to create the component
+```console
+$ dcictl topic-list
+```
+
+### 4. create the component associated to the team:
+```console
+$ dcictl component-create --topic-id <TOPIC-ID> --team-id ${TEAM_ID} --name <awesome-Operator:1.2.3> --canonical_project_name <My-Awesome-Operator:1.2.3> --type <MY-COMPONENT-TYPE> --url http://example.com
+```
+
+
 ## License
 
 Apache 2.0
