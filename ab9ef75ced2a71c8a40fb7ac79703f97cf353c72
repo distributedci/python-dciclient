@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2e809690_08895e0e",
+        "filename": "dciclient/v1/api/product.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2021-12-15T22:21:41Z",
+      "side": 1,
+      "message": "\u003e Why do you call out etag in product but not in component?\n\nYou know, that\u0027s a good question, that piece I left as it was but it is weird that some topic-* commands require --etag (like delete) but update doesn\u0027t. I think there\u0027s a general direction going towards *not* needing --etag in general but I am not sure.",
+      "parentUuid": "a65c7ac0_42f15b4a",
+      "revId": "ab9ef75ced2a71c8a40fb7ac79703f97cf353c72",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "20b78886_c0588f2e",
         "filename": "dciclient/v1/shell_commands/cli.py",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "ab9ef75ced2a71c8a40fb7ac79703f97cf353c72",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78da67c2_68301b93",
+        "filename": "dciclient/v1/shell_commands/cli.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2021-12-15T22:21:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20b78886_c0588f2e",
+      "revId": "ab9ef75ced2a71c8a40fb7ac79703f97cf353c72",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0",
+      "unresolved": false
     }
   ]
 }
