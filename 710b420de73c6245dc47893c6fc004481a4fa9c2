@@ -1,0 +1,9 @@
+Code-Review+1: Bill Peck <bill@pecknet.com>
+Code-Review+2: Guillaume Vincent <gvincent@redhat.com>
+Workflow+1: Jorge Gallegos <jgallego@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Thu, 16 Dec 2021 15:18:30 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/23445
+Project: python-dciclient
+Branch: refs/heads/master
