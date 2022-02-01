@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce75d02_31bfd191",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-02-01T15:52:59Z",
+      "side": 1,
+      "message": "I\u0027m not sure this is required.\nThis functionality is already implemented if I\u0027m correct. And tested.\n\n    r, created \u003d api_component.get_or_create(\n        dci_context,\n        name\u003d\"component name\",\n        topic_id\u003dtopic_id,\n        type\u003d\"component_type\",\n        team_id\u003dteam_id, \n        defaults\u003d{\"canonical_project_name\": \"canonical component2\"},\n    )",
+      "revId": "c296151bfb86db51fdb2f1e8b219c96f8364fe4f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
