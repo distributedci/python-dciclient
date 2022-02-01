@@ -14,10 +14,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from dciclient.v1 import utils
 from dciclient.v1.api import base
 from dciclient.v1.api.tag import add_tag_to_resource, delete_tag_from_resource
 
 RESOURCE = "components"
+
+HTTP_TIMEOUT = 600
 
 
 def create(
@@ -54,9 +57,21 @@ def create(
 
 
 def get_or_create(context, **kwargs):
-    return base.get_or_create(
-        context, "topics", id=kwargs["topic_id"], subresource="components", **kwargs
-    )
+    """Get or Create a component"""
+    data = utils.sanitize_kwargs(**kwargs)
+    id = data.pop("id", None)
+    uri = "%s/topics/%s/components" % (context.dci_cs_api, id)
+    params_to_identify_a_component = ['name', 'topic_id', 'type', 'team_id']
+    params = {"where": ",".join(["%s:%s" % (k, v)
+                                 for k, v in data.items()
+                                 if k in params_to_identify_a_component])}
+    r = context.session.get(uri, timeout=HTTP_TIMEOUT, params=params)
+    items = r.json()['components']
+    if items:
+        return get(context, 'components', id=items[0]["id"]), False
+    defaults = data.pop("default", {})
+    data = dict(data, **defaults)
+    return create(context, 'components', **data), True
 
 
 def get(context, id, **kwargs):
