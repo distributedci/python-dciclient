@@ -22,7 +22,6 @@ from dciclient.v1.shell_commands import topic
 from dciclient.v1.shell_commands import component
 from dciclient.v1.shell_commands import file
 from dciclient.v1.shell_commands import job
-from dciclient.v1.shell_commands import test
 from dciclient.v1.shell_commands import remoteci
 from dciclient.v1.shell_commands import purge
 
@@ -85,11 +84,6 @@ command_function = {
     "job-show-file": job.file_show,
     "job-list-file": job.file_list,
     "job-delete-file": job.file_delete,
-    "test-list": test.list,
-    "test-create": test.create,
-    "test-update": test.update,
-    "test-delete": test.delete,
-    "test-show": test.show,
     "remoteci-list": remoteci.list,
     "remoteci-create": remoteci.create,
     "remoteci-update": remoteci.update,
