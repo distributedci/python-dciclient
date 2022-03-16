@@ -5,7 +5,8 @@
 %endif
 
 Name:           python-dciclient
-Version:        2.2.1
+# keep in sync with dciclient/version.py
+Version:        2.3.0
 Release:        1.VERS%{?dist}
 
 Summary:        Python client for DCI control server
@@ -91,10 +92,15 @@ install -d %{buildroot}%{_bindir}
 %license LICENSE
 %{python3_sitelib}/*
 %{_bindir}/dcictl
+%{_bindir}/dci-vault
+%{_bindir}/dci-vault-client
 %endif
 
 
 %changelog
+* Thu Mar 17 2022 Frederic Lepied <flepied@redhat.com> - 2.3.0-1
+- add dci-vault and dci-vault-client
+
 * Thu Jan 20 2022 Guillaume Vincent <gvincent@redhat.com> - 2.2.1-1
 - Refactor printers
 
