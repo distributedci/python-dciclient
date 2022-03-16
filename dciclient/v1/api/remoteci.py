@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2015-2016 Red Hat, Inc.
+# Copyright 2015-2022 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -78,3 +78,10 @@ def remove_user(context, id, user_id):
     return base.delete(
         context, RESOURCE, id, subresource="users", subresource_id=user_id
     )
+
+
+def password(context, id, key=None):
+    if key:
+        return base.get(context, RESOURCE, id="%s/password?key=%s" % (id, key))
+    else:
+        return base.get(context, RESOURCE, id="%s/password" % id)
