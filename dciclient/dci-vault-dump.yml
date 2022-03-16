@@ -1,0 +1,7 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    _msg_: "{{ vars | to_nice_json }}"
+  tasks: 
+   - debug:
+       msg: "{{ _msg_.split('\n') }}"
