@@ -19,3 +19,7 @@ from dciclient.v1.api import jobstate
 
 def show(context, args):
     return jobstate.get(context, args.id)
+
+
+def update(context, args):
+    return jobstate.update(context, id=args.id, etag=args.etag, status=args.status)

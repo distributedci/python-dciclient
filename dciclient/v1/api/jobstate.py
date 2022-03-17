@@ -30,3 +30,12 @@ def get(context, id, **kwargs):
 
 def delete(context, id):
     return base.delete(context, RESOURCE, id=id)
+
+
+def update(context, id, status, etag):
+    uri = "%s/%s" % (context.dci_cs_api, RESOURCE)
+    data = {'job_id': id, 'status': status}
+    r = context.session.post(
+        uri, headers={"If-match": etag}, json=data
+    )
+    return r
