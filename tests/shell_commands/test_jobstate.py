@@ -18,3 +18,8 @@
 def test_show(runner, jobstate_id):
     jobstate = runner.invoke(["jobstate-show", jobstate_id])["jobstate"]
     assert jobstate["id"] == jobstate_id
+
+
+def test_update(runner, job_id):
+    job = runner.invoke(["jobstate-update", job_id, "error"])["jobstate"]
+    assert job["status"] == "error"
