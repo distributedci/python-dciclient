@@ -19,3 +19,7 @@ from dciclient.v1.api import jobstate
 
 def show(context, args):
     return jobstate.get(context, args.id)
+
+
+def create(context, args):
+    return jobstate.create(context, args.status, "Create a new job status", args.id)
