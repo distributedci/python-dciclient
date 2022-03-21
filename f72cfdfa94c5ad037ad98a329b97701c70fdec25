@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "376808e1_8a4e922a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-03-21T15:59:39Z",
+      "side": 1,
+      "message": "Some comments inlined",
+      "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e1ecf5_08877fc5",
+        "filename": "dciclient/v1/shell_commands/cli.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-03-21T15:59:39Z",
+      "side": 1,
+      "message": "here I would prefer --job-id instead of id\n\nid is by convention the id of the resource. id here is more the id of the job state. it makes sense in jobstate-show, but not in jobstate-create.\n\njobstate-create add a new job state status to the job id",
+      "range": {
+        "startLine": 415,
+        "startChar": 20,
+        "endLine": 415,
+        "endChar": 22
+      },
+      "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "067d5a8b_113250c7",
+        "filename": "dciclient/v1/shell_commands/cli.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-03-21T15:59:39Z",
+      "side": 1,
+      "message": "You didn\u0027t added comment argument here.\nMaybe you can add comment with some default to empty string \u0027\u0027 ?\n\ndcictl jobstate-create \u003cjob_id\u003e error \"my amazing comment\"",
+      "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
