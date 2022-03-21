@@ -41,6 +41,30 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0eab6e_3a6248fa",
+        "filename": "dciclient/v1/shell_commands/cli.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 821
+      },
+      "writtenOn": "2022-03-21T17:42:30Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "a6e1ecf5_08877fc5",
+      "range": {
+        "startLine": 415,
+        "startChar": 20,
+        "endLine": 415,
+        "endChar": 22
+      },
+      "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "067d5a8b_113250c7",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-03-21T15:59:39Z",
       "side": 1,
       "message": "You didn\u0027t added comment argument here.\nMaybe you can add comment with some default to empty string \u0027\u0027 ?\n\ndcictl jobstate-create \u003cjob_id\u003e error \"my amazing comment\"",
+      "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d1a58f2_cc4be270",
+        "filename": "dciclient/v1/shell_commands/cli.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 821
+      },
+      "writtenOn": "2022-03-21T17:42:30Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "067d5a8b_113250c7",
       "revId": "f72cfdfa94c5ad037ad98a329b97701c70fdec25",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
