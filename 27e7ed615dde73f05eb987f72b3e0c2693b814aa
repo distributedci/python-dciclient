@@ -22,6 +22,30 @@
       },
       "revId": "27e7ed615dde73f05eb987f72b3e0c2693b814aa",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "492fa5af_47696bc5",
+        "filename": "MANIFEST.in",
+        "patchSetId": 16
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-04-01T12:32:23Z",
+      "side": 1,
+      "message": "it doesn\u0027t anymore. remove it.",
+      "parentUuid": "21bdba5a_84d88df1",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 36
+      },
+      "revId": "27e7ed615dde73f05eb987f72b3e0c2693b814aa",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
