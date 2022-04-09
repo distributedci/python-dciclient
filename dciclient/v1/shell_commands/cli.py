@@ -122,6 +122,10 @@ def parse_arguments(args, environment={}):
         "user-list", help="List all users.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -167,6 +171,10 @@ def parse_arguments(args, environment={}):
         "team-list", help="List all teams.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -207,6 +215,10 @@ def parse_arguments(args, environment={}):
         "product-list", help="List all products.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -267,6 +279,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -277,6 +293,10 @@ def parse_arguments(args, environment={}):
         "feeder-list", help="List all feeders.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -329,6 +349,10 @@ def parse_arguments(args, environment={}):
         "topic-list", help="List all topics.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -397,6 +421,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -423,6 +451,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("--topic-id", required=True, dest="id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -512,6 +544,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -531,6 +567,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("job_id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -549,6 +589,10 @@ def parse_arguments(args, environment={}):
     # job commands
     p = subparsers.add_parser("job-list", help="List all jobs.", parents=[base_parser])
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=10)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -568,6 +612,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.set_defaults(command="job-results")
@@ -608,6 +656,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -625,6 +677,10 @@ def parse_arguments(args, environment={}):
         "remoteci-list", help="List all remotecis.", parents=[base_parser]
     )
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -715,6 +771,10 @@ def parse_arguments(args, environment={}):
     )
     p.add_argument("id")
     p.add_argument("--sort", default="-created_at")
+    p.add_argument("--reverse-order",
+                   default=False,
+                   action="store_true",
+                   )
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.add_argument("--where", help="Optional filter criteria", required=False)
@@ -737,5 +797,11 @@ def parse_arguments(args, environment={}):
     if "command" not in args:
         parser.print_help()
         sys.exit()
+
+    if args.reverse_order:
+        if args.sort[0] == "-":
+            args.sort = args.sort[1:]
+        else:
+            args.sort = "-" + args.sort
 
     return args
