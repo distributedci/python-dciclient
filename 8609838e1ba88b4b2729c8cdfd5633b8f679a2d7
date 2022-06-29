@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54abb2d_84a62fe4",
+        "filename": "dciclient/v1/shell_commands/runner.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2022-06-29T17:06:47Z",
+      "side": 1,
+      "message": "missing:\n\n    \"pipeline-update\": pipeline.update,",
+      "revId": "8609838e1ba88b4b2729c8cdfd5633b8f679a2d7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2507d1b_ec50c12d",
+        "filename": "tests/shell_commands/test_pipeline.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2022-06-29T17:06:47Z",
+      "side": 1,
+      "message": "I assume the show functionality is tested as create performs a get and prints what the show would, correct?",
+      "revId": "8609838e1ba88b4b2729c8cdfd5633b8f679a2d7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26469a18_ad8ea8fe",
+        "filename": "tests/shell_commands/test_pipeline.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2022-06-29T17:06:47Z",
+      "side": 1,
+      "message": "missing test for update 😞",
+      "revId": "8609838e1ba88b4b2729c8cdfd5633b8f679a2d7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
