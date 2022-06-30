@@ -26,4 +26,10 @@ def my_team_id(context):
     """Asks the control-server for the team_id of the currently
     authenticated resource.
     """
-    return get(context).json()["identity"]["team_id"]
+    res = get(context).json()
+    if "team_id" in res["identity"]:
+        return res["identity"]["team_id"]
+    elif "teams" in res["identity"]:
+        return next(iter(res["identity"]["teams"].keys()))
+    else:
+        return None
