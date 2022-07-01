@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2017 Red Hat, Inc.
+# Copyright 2017-2022 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -26,4 +26,10 @@ def my_team_id(context):
     """Asks the control-server for the team_id of the currently
     authenticated resource.
     """
-    return get(context).json()["identity"]["team_id"]
+    res = get(context).json()
+    if "identity" in res:
+        if "team_id" in res["identity"]:
+            return res["identity"]["team_id"]
+        elif "teams" in res["identity"]:
+            return next(iter(res["identity"]["teams"].keys()))
+    return None
