@@ -33,6 +33,23 @@
       "message": "LGTM 😎",
       "revId": "fb10176c028f487528a639230d252ce4d1b497a8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a41498f_94e01e9a",
+        "filename": "dciclient/v1/api/pipeline.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2022-07-11T14:36:22Z",
+      "side": 1,
+      "message": "Maybe renaming it to show_jobs for consistency with CLI and other parts of dciclient.",
+      "revId": "fb10176c028f487528a639230d252ce4d1b497a8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
