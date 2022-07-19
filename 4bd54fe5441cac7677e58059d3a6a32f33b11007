@@ -16,6 +16,24 @@
       "message": "ack, not sure random is the best option here.",
       "revId": "4bd54fe5441cac7677e58059d3a6a32f33b11007",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe2c6a86_eae26aa7",
+        "filename": "dciclient/v1/api/identity.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-07-19T10:26:56Z",
+      "side": 1,
+      "message": "True, maybe we should rename it.",
+      "parentUuid": "aff31fcf_4185a40f",
+      "revId": "4bd54fe5441cac7677e58059d3a6a32f33b11007",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
