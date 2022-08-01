@@ -64,6 +64,7 @@ setuptools.setup(
         "Topic :: System :: Distributed Computing",
     ],
     entry_points={"console_scripts": ["dcictl = dciclient.shell:main",
+                                      "dci-create-component = dciclient.create_component:main",
                                       "dci-vault = dciclient.vault:main",
                                       "dci-vault-client = dciclient.vault_client:main",
                                       ]},
