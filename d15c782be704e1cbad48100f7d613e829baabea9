@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "350b0d33_382d7b9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2022-08-17T22:30:47Z",
+      "side": 1,
+      "message": "Talked to Yassine about this, the consensus is that a bash script would make easier to test as the functionality required is already tested inside dcictl",
+      "revId": "d15c782be704e1cbad48100f7d613e829baabea9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
