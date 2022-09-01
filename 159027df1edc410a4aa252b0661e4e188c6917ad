@@ -16,6 +16,24 @@
       "message": "I think we should also include a command line option to list the topics.",
       "revId": "159027df1edc410a4aa252b0661e4e188c6917ad",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be07d8e3_00bbfd5a",
+        "filename": "dciclient/rhel_kernel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-09-01T14:32:41Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "43127bb2_379ba45e",
+      "revId": "159027df1edc410a4aa252b0661e4e188c6917ad",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
