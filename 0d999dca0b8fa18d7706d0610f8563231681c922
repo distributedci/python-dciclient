@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723357fa_a971e8fa",
+        "filename": "dciclient/rhel_kernel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-09-01T13:59:41Z",
+      "side": 1,
+      "message": "Should be https://api.distributed-ci.io",
+      "revId": "0d999dca0b8fa18d7706d0610f8563231681c922",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f35bbb_e338b7dc",
+        "filename": "dciclient/rhel_kernel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 405
+      },
+      "writtenOn": "2022-09-01T13:59:41Z",
+      "side": 1,
+      "message": "With this code we can have multiple lines no ?\nShould be break the for loop when we found the first kernel: .. ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 36
+      },
+      "revId": "0d999dca0b8fa18d7706d0610f8563231681c922",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
