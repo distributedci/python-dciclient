@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43127bb2_379ba45e",
+        "filename": "dciclient/rhel_kernel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 606
+      },
+      "writtenOn": "2022-09-01T13:58:03Z",
+      "side": 1,
+      "message": "I think we should also include a command line option to list the topics.",
+      "revId": "159027df1edc410a4aa252b0661e4e188c6917ad",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
