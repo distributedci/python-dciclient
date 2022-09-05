@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7ab7a4d_dddda471",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-09-05T08:54:53Z",
+      "side": 1,
+      "message": "The help will be confusing for a partner. Maybe use \"name\" with dest\u003d\"type\" ?",
+      "revId": "c5a1a3fd2b310e0250d161a597e2b79ae128b564",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8d5c34_669cd72b",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-09-05T08:54:53Z",
+      "side": 1,
+      "message": "Maybe use \"version\" with dest\u003d\"name\" ?",
+      "revId": "c5a1a3fd2b310e0250d161a597e2b79ae128b564",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
