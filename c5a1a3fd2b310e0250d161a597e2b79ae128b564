@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe0c2896_bd1ed434",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-09-05T08:57:25Z",
+      "side": 1,
+      "message": "\u003e The help will be confusing for a partner. Maybe use \"name\" with dest\u003d\"type\" ?\n\nwhy? with metavar, it will be displayed as component_name.",
+      "parentUuid": "c7ab7a4d_dddda471",
+      "revId": "c5a1a3fd2b310e0250d161a597e2b79ae128b564",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d8d5c34_669cd72b",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-05T08:54:53Z",
       "side": 1,
       "message": "Maybe use \"version\" with dest\u003d\"name\" ?",
+      "revId": "c5a1a3fd2b310e0250d161a597e2b79ae128b564",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18ab5e6_fa8b6217",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-09-05T08:57:25Z",
+      "side": 1,
+      "message": "\u003e Maybe use \"version\" with dest\u003d\"name\" ?\n\nwhy? with metavar, it will displayed as component_version.",
+      "parentUuid": "3d8d5c34_669cd72b",
       "revId": "c5a1a3fd2b310e0250d161a597e2b79ae128b564",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
