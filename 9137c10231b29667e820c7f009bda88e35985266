@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14145605_37a796b8",
+        "filename": "tests/shell_commands/test_job.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-09-07T12:21:02Z",
+      "side": 1,
+      "message": "whu job-delete here?",
+      "revId": "9137c10231b29667e820c7f009bda88e35985266",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
