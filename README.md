@@ -197,6 +197,17 @@ $ source dcirc.sh
 $ dci-create-component OCP-4.11 "My Company Product" 1.0 ga
 ```
 
+## dci-find-latest-component
+
+`dci-find-latest-component` allows to find the latest component for a
+product. For example to find the latest GA ocp component, do it like
+this:
+
+```ShellSession
+$ source dcirc.sh
+$ dci-find-latest-component --tags build:ga OpenShift ocp
+```
+
 ## License
 
 Apache 2.0
