@@ -24,6 +24,7 @@ import dci
 import dci.app
 import dci.dci_config
 from dciclient import create_component as dci_create_component
+from dciclient import find_latest_component as dci_find_latest_component
 from dciclient.v1.api import context as api_context
 from dciclient.v1.api import team as api_team
 from dciclient.v1.api import product as api_product
@@ -202,6 +203,12 @@ def runner_factory(context):
         response = dci_create_component.run(context, args)
         return response.json() if response else None
 
+    def invoke_find_latest_component(arguments):
+        environment = {}
+        args = dci_find_latest_component.parse_arguments(arguments, environment)
+        response = dci_find_latest_component.run(context, args)
+        return response
+
     def invoke_raw(arguments):
         environment = {}
         args = cli.parse_arguments(arguments, environment)
@@ -214,6 +221,7 @@ def runner_factory(context):
     runner.invoke = invoke
     runner.invoke_raw = invoke_raw
     runner.invoke_create_component = invoke_create_component
+    runner.invoke_find_latest_component = invoke_find_latest_component
     return runner
 
 
@@ -276,6 +284,13 @@ def product_id(dci_context, team_id):
 
 
 @pytest.fixture
+def product(dci_context, product_id):
+    return api_product.list(
+        dci_context,
+        where="name:dci_product").json()["products"][0]
+
+
+@pytest.fixture
 def topic_id(dci_context, product_id):
     kwargs = {
         "name": "foo_topic",
@@ -325,6 +340,11 @@ def component_id(dci_context, topic_id):
 
     component = api_component.create(dci_context, **kwargs).json()
     return component["component"]["id"]
+
+
+@pytest.fixture
+def component(dci_context, component_id):
+    return api_component.get(dci_context, component_id).json()["component"]
 
 
 @pytest.fixture
