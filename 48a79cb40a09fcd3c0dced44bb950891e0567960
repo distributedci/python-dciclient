@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4954ebb3_950f362a",
+        "filename": "dciclient/find_latest_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-09-20T23:12:09Z",
+      "side": 1,
+      "message": "s/lookup_component/lookup_latest_component",
+      "revId": "48a79cb40a09fcd3c0dced44bb950891e0567960",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86542806_d2c0546a",
+        "filename": "dciclient/find_latest_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2022-09-20T23:12:09Z",
+      "side": 1,
+      "message": "This is going to retrieve the latest component of the latest topic.\nIf you want the latest component from every topics (ie. a product), you need to pick up the latest from each topic and then compare the components dates to return the latest one.",
+      "revId": "48a79cb40a09fcd3c0dced44bb950891e0567960",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
