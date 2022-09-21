@@ -18,6 +18,24 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c1a4cd0_1786bb58",
+        "filename": "dciclient/find_latest_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-09-21T09:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4954ebb3_950f362a",
+      "revId": "48a79cb40a09fcd3c0dced44bb950891e0567960",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86542806_d2c0546a",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-09-20T23:12:09Z",
       "side": 1,
       "message": "This is going to retrieve the latest component of the latest topic.\nIf you want the latest component from every topics (ie. a product), you need to pick up the latest from each topic and then compare the components dates to return the latest one.",
+      "revId": "48a79cb40a09fcd3c0dced44bb950891e0567960",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e603668_8a72c46a",
+        "filename": "dciclient/find_latest_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-09-21T09:13:22Z",
+      "side": 1,
+      "message": "\u003e This is going to retrieve the latest component of the latest topic.\n\u003e If you want the latest component from every topics (ie. a product), you need to pick up the latest from each topic and then compare the components dates to return the latest one.\n\nthe use case is only the component from the most recent topic.",
+      "parentUuid": "86542806_d2c0546a",
       "revId": "48a79cb40a09fcd3c0dced44bb950891e0567960",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
