@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52fdadc_0133a417",
+        "filename": "README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 800
+      },
+      "writtenOn": "2022-11-04T16:11:34Z",
+      "side": 1,
+      "message": "Can we document, at the end, what jobs are taken if job_id_1 and/or job_id_2 are not defined? I saw this in the code but I\u0027m not sure what are the jobs that are retrieved from DCI.",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 251,
+        "endChar": 3
+      },
+      "revId": "d2d68a0e0081ad7d461013a1f9b3707714ed2022",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
