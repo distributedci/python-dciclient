@@ -45,6 +45,30 @@
       },
       "revId": "67b03be3a61f242cfdd95582c24a1d03ab29b0d7",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51d599ae_ef45f5ab",
+        "filename": "README.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-11-07T10:13:35Z",
+      "side": 1,
+      "message": "\u003e And if job_id_1 is not specified and the last job in success status is searched, then job_id_2 would be the previous job to that successful job? or would it be the same than the one used by job_id_1? (don\u0027t know if it\u0027s clear what I\u0027ve commented)\n\nyes it will be a different one.",
+      "parentUuid": "5bef82bc_0580ee8a",
+      "range": {
+        "startLine": 255,
+        "startChar": 60,
+        "endLine": 256,
+        "endChar": 60
+      },
+      "revId": "67b03be3a61f242cfdd95582c24a1d03ab29b0d7",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
