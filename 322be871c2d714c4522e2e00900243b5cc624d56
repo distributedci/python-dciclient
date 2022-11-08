@@ -16,6 +16,24 @@
       "message": "I\u0027m wondering if we should move this in the control server.\nThis is a feature I would like to see on the UI also",
       "revId": "322be871c2d714c4522e2e00900243b5cc624d56",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f553447_80d9a832",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2022-11-08T18:52:37Z",
+      "side": 1,
+      "message": "\u003e I\u0027m wondering if we should move this in the control server.\n\u003e This is a feature I would like to see on the UI also\n\nI have done a change to add the output to the app agent: 26615: store the differences from previous same job in diff-jobs.txt | https://softwarefactory-project.io/r/c/dci-openshift-app-agent/+/26615",
+      "parentUuid": "4c0a06bc_eb3cc463",
+      "revId": "322be871c2d714c4522e2e00900243b5cc624d56",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
