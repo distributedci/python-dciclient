@@ -14,6 +14,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from datetime import datetime as dt
+
 from dciclient.v1.api import base
 
 
@@ -107,6 +109,35 @@ def list_teams(context, id, **kwargs):
 
 def list_components(context, id, **kwargs):
     return base.list(context, RESOURCE, id=id, subresource="components", **kwargs)
+
+
+def get_latest_component_with_at_least_one_tag(context, id, tags):
+    class C:
+        def __init__(self, c):
+            self._c = c
+
+        def json(self):
+            return {"component": self._c}
+
+    components = []
+    for t in tags:
+        cmpts = base.list(
+            context,
+            RESOURCE,
+            id=id,
+            subresource="components",
+            where="tags:" + t,
+            sort="-released_at",
+        ).json()["components"]
+        if not cmpts:
+            continue
+        components.append(cmpts[0])
+    components.sort(
+        key=lambda x: dt.strptime(x["released_at"].split("T")[0], "%Y-%m-%d")
+    )
+    if components:
+        return C(components[-1])
+    return []
 
 
 def get_jobs_from_components(context, id, component_id, **kwargs):

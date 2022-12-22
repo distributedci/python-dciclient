@@ -121,3 +121,32 @@ def test_get_or_create_component(dci_context, topic_id):
         len(api_topic.list_components(dci_context, topic_id).json()["components"])
         == nb_components
     )
+
+
+def test_get_latest_component_with_at_least_one_tag(dci_context, topic_id):
+    component_params = {
+        "name": "component1",
+        "type": "component_type",
+        "data": {"dir": "/tmp"},
+        "topic_id": topic_id,
+        "tags": ["tag_1", "tag_2", "tag_3"],
+        "released_at": "2022-12-22T00:45:43.602671"
+    }
+    api_component.create(dci_context, **component_params).json()["component"]
+
+    component_params["name"] = "component2"
+    component_params["tags"] = ["tag_2", "tag_3"]
+    component_params["released_at"] = "2022-12-25T00:45:43.602671"
+    api_component.create(dci_context, **component_params).json()["component"]
+
+    component = api_topic.get_latest_component_with_at_least_one_tag(dci_context, topic_id, ["tag_2", "tag_3"]).json()["component"]
+    assert component["name"] == "component2"
+
+    component = api_topic.get_latest_component_with_at_least_one_tag(dci_context, topic_id, ["tag_1", "tag_3"]).json()["component"]
+    assert component["name"] == "component2"
+
+    component = api_topic.get_latest_component_with_at_least_one_tag(dci_context, topic_id, ["tag_1", "tag_2"]).json()["component"]
+    assert component["name"] == "component2"
+
+    component = api_topic.get_latest_component_with_at_least_one_tag(dci_context, topic_id, ["tag_1"]).json()["component"]
+    assert component["name"] == "component1"
