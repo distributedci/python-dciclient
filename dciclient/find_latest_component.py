@@ -84,6 +84,7 @@ def get_product_id(context, args):
     a.limit = 1
     a.offset = 0
     a.where = "name:" + a.product
+    a.query = None
 
     response = product.list(context, a)
     try:
