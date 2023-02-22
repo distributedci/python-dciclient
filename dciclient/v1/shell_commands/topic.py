@@ -21,7 +21,7 @@ COLUMNS = ["id", "name", "state", "export_control", "product_id", "component_typ
 
 
 def list(context, args):
-    params = {k: getattr(args, k) for k in ["sort", "limit", "offset", "where"]}
+    params = {k: getattr(args, k) for k in ["sort", "limit", "offset", "where", "query"]}
     return topic.list(context, **params)
 
 
