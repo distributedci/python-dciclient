@@ -43,6 +43,8 @@ COLUMNS = ["canonical_project_name",
            "type",
            "updated_at",
            "url",
+           "display_name",
+           "version"
            ]
 
 
