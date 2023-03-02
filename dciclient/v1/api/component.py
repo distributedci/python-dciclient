@@ -28,12 +28,12 @@ def create(
     team_id=None,
     canonical_project_name=None,
     data={},
-    title=None,
-    message=None,
     url=None,
     state="active",
     tags=[],
     released_at=None,
+    display_name=None,
+    version=None
 ):
     return base.create(
         context,
@@ -42,14 +42,14 @@ def create(
         type=type,
         canonical_project_name=canonical_project_name,
         data=data,
-        title=title,
-        message=message,
         url=url,
         topic_id=topic_id,
         team_id=team_id,
         state=state,
         tags=tags,
         released_at=released_at,
+        display_name=display_name,
+        version=version
     )
 
 

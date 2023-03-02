@@ -37,7 +37,7 @@ def parse_arguments(args, environment={}):
             "(https://docs.distributed-ci.io/)"
         ),
     )
-    dci_context.parse_arguments(p, args, environment)
+    dci_context.parse_auth_arguments(p, environment)
     _create_array_argument(p, "--tags", help="Comma separated list of tags")
     p.add_argument(
         "--released-at",
@@ -60,18 +60,27 @@ def parse_arguments(args, environment={}):
         help="Team to use when there are multiple",
     )
     p.add_argument(
+        "--display-name",
+        default=None,
+        help="Display name of the component",
+    )
+    p.add_argument(
+        "--version",
+        default=None,
+        help="Version of the component, example: 2.3.4",
+        metavar="component_version"
+    )
+    p.add_argument(
         "topic",
         help="Topic type and version, examples: OCP-4.12 or RHEL-9.1",
     )
     p.add_argument(
         "type",
-        help='Name of the component, example: "my awesome component"',
-        metavar="component_name",
+        help="type of the component, example: 'rpm', 'operator', 'container-image'",
     )
     p.add_argument(
         "name",
-        help="Version of the component, example: v2.3.4",
-        metavar="component_version",
+        help="Name of the component, example: 'RHEL-9.0', 'jaeger-operator', 'nfs-subdir-external-provisioner'",
     )
     p.add_argument(
         "release_tag",
@@ -135,8 +144,6 @@ def run(context, args):
     args.topic_id = get_topic_id(context, args)
 
     # Required arguments for component creation
-    args.title = None
-    args.message = None
     args.state = True
     args.type = "-".join([p.lower() for p in args.type.split(" ")])
     args.canonical_project_name = "%s %s" % (" ".join([p.capitalize()

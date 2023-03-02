@@ -15,7 +15,6 @@
 # under the License.
 
 import os
-import sys
 from mock import patch
 from pytest import raises
 from dciclient.v1.shell_commands.cli import parse_arguments
@@ -25,14 +24,9 @@ from dciclient.version import __version__
 
 @patch("sys.exit")
 def test_parse_arguments_version(exit_function, capsys):
-    parse_arguments(["--version", "user-list"])
+    parse_arguments(["--version"])
     captured = capsys.readouterr()
-    # Note(hguemar): argparse behaviour here changed on py3k
-    if sys.version_info > (3, 0):
-        captured = captured.out
-    else:
-        captured = captured.err
-    assert captured == "dcictl {}\n".format(__version__)
+    assert captured.out == "dcictl {}\n".format(__version__)
     assert exit_function.called
 
 

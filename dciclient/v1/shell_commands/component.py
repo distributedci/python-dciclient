@@ -33,15 +33,15 @@ def create(context, args):
             "name",
             "type",
             "canonical_project_name",
-            "title",
-            "message",
             "url",
             "team_id",
             "topic_id",
             "state",
             "data",
             "tags",
-            "released_at"
+            "released_at",
+            "display_name",
+            "version"
         ]
     }
     params["data"] = validate_json(context, "data", params["data"])
@@ -86,12 +86,12 @@ def update(context, args):
             "name",
             "type",
             "canonical_project_name",
-            "title",
-            "message",
             "url",
             "state",
             "data",
             "tags",
+            "display_name",
+            "version"
         ]
     }
 
