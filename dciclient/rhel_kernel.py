@@ -27,7 +27,7 @@ _DEFAULT_DCI_CS_URL = "http:://127.0.0.1:5000"
 
 def parse_arguments(args, environment={}):
     parser = ArgumentParser()
-    dci_context.parse_arguments(parser, args, environment)
+    dci_context.parse_auth_arguments(parser, environment)
     parser.add_argument(
         "--topic",
         dest="topic_name",
