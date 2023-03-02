@@ -34,6 +34,8 @@ def create(
     state="active",
     tags=[],
     released_at=None,
+    display_name=None,
+    version=None
 ):
     return base.create(
         context,
@@ -50,6 +52,8 @@ def create(
         state=state,
         tags=tags,
         released_at=released_at,
+        display_name=display_name,
+        version=version
     )
 
 
