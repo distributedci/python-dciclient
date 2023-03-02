@@ -60,6 +60,18 @@ def parse_arguments(args, environment={}):
         help="Team to use when there are multiple",
     )
     p.add_argument(
+        "--display-name",
+        default=None,
+        help="Display name of the component",
+        metavar="component_version",
+    )
+    p.add_argument(
+        "--version",
+        default=None,
+        help="Version of the component, example: 2.3.4",
+        metavar="component_version",
+    )
+    p.add_argument(
         "topic",
         help="Topic type and version, examples: OCP-4.12 or RHEL-9.1",
     )

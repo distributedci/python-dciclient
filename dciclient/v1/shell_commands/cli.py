@@ -384,6 +384,8 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "--released-at", default=None, type=_date_isoformat, help="The release date"
     )
+    p.add_argument("--display-name", required=False, help="Display name of the component")
+    p.add_argument("--version", required=False, help="Version of the component")
     p.set_defaults(command="component-create")
 
     p = subparsers.add_parser(
@@ -401,6 +403,8 @@ def parse_arguments(args, environment={}):
     p.add_argument("--message", help="Component message")
     p.add_argument("--url", help="URL to look for the component")
     p.add_argument("--data", default="{}", help="Data to pass (JSON)")
+    p.add_argument("--display-name", required=False, help="Display name of the component")
+    p.add_argument("--version", required=False, help="Version of the component")
     p.set_defaults(command="component-update")
 
     p = subparsers.add_parser(
