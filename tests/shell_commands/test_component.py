@@ -234,10 +234,6 @@ def test_update(runner, product_id):
             "type",
             "--tags",
             "foo,bar",
-            "--title",
-            "title",
-            "--message",
-            "a message",
             "--url",
             "http://localhost/foo",
             "--topic-id",
@@ -248,8 +244,6 @@ def test_update(runner, product_id):
     assert component["name"] == "name"
     assert component["canonical_project_name"] == "canonical"
     assert component["type"] == "type"
-    assert component["title"] == "title"
-    assert component["message"] == "a message"
     assert component["url"] == "http://localhost/foo"
     assert len(component["tags"]) == 2
     assert component["tags"][0] == "foo"
@@ -266,10 +260,6 @@ def test_update(runner, product_id):
             "newtype",
             "--tags",
             "new,tag",
-            "--title",
-            "newtitle",
-            "--message",
-            "a new message",
             "--url",
             "http://localhost/bar",
             component["id"],
@@ -279,8 +269,6 @@ def test_update(runner, product_id):
     assert result["name"] == "newname"
     assert result["canonical_project_name"] == "newcanonical"
     assert result["type"] == "newtype"
-    assert result["title"] == "newtitle"
-    assert result["message"] == "a new message"
     assert result["url"] == "http://localhost/bar"
     assert len(result["tags"]) == 2
     assert result["tags"][0] == "new"
@@ -392,6 +380,10 @@ def test_create_component(runner, topic, test_user, team_user_name, team_user_id
                                                 '--data={"toto": false}',
                                                 "--team",
                                                 team_user_name,
+                                                "--version",
+                                                "1.0",
+                                                "--display-name",
+                                                "My Company Product",
                                                 topic,
                                                 "My Company Product",
                                                 "1.0",
@@ -404,6 +396,8 @@ def test_create_component(runner, topic, test_user, team_user_name, team_user_id
     assert component["url"] == "https://company.com/product/"
     assert component["data"] == {"toto": False}
     assert component["team_id"] == team_user_id
+    assert component["version"] == "1.0"
+    assert component["display_name"] == "My Company Product"
 
 
 def test_find_latest_component(runner, product, component):

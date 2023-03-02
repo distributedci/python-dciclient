@@ -18,6 +18,7 @@ import argparse
 import sys
 from argparse import ArgumentParser
 from datetime import datetime
+from dciclient.version import __version__
 from dciclient.v1.shell_commands import context as dci_context
 
 
@@ -46,14 +47,23 @@ def _date_isoformat(v):
     return v
 
 
+def print_version_compatible_py27(args):
+    if args == ['--version']:
+        print("dcictl %s" % __version__)
+        sys.exit()
+
+
 def parse_arguments(args, environment={}):
     base_parser = ArgumentParser(add_help=False)
 
     parser = ArgumentParser(prog="dcictl")
 
-    dci_context.parse_arguments(parser, args, environment)
+    print_version_compatible_py27(args)
+
+    dci_context.parse_auth_arguments(parser, environment)
 
     subparsers = parser.add_subparsers()
+
     # user commands
     p = subparsers.add_parser(
         "user-list", help="List all users.", parents=[base_parser]
@@ -376,14 +386,14 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "--canonical_project_name", default=None, help="Canonical project name."
     )
-    p.add_argument("--title", help="Title of component")
-    p.add_argument("--message", help="Component message")
     p.add_argument("--url", help="URL to look for the component")
     _create_boolean_flags(p, "--active/--no-active", default=True, dest="state")
     p.add_argument("--data", default="{}", help="Data to pass (JSON)")
     p.add_argument(
         "--released-at", default=None, type=_date_isoformat, help="The release date"
     )
+    p.add_argument("--display-name", required=False, help="Display name of the component")
+    p.add_argument("--version", required=False, help="Version of the component")
     p.set_defaults(command="component-create")
 
     p = subparsers.add_parser(
@@ -397,10 +407,10 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "--canonical_project_name", default=None, help="Canonical project name."
     )
-    p.add_argument("--title", help="Title of component")
-    p.add_argument("--message", help="Component message")
     p.add_argument("--url", help="URL to look for the component")
     p.add_argument("--data", default="{}", help="Data to pass (JSON)")
+    p.add_argument("--display-name", required=False, help="Display name of the component")
+    p.add_argument("--version", required=False, help="Version of the component")
     p.set_defaults(command="component-update")
 
     p = subparsers.add_parser(
@@ -511,7 +521,6 @@ def parse_arguments(args, environment={}):
     p.add_argument("--status", default=None, help="Status of the job.")
     p.add_argument("--status_reason", default=None, help="Status reason of the job.")
     p.add_argument("--configuration", help="Configuration of the job.")
-    p.add_argument("--message", help="Component message")
     p.add_argument("--url", help="URL to look for the component")
     p.set_defaults(command="job-update")
 
