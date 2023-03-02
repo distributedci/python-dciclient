@@ -25,7 +25,7 @@ from dciclient.version import __version__
 
 @patch("sys.exit")
 def test_parse_arguments_version(exit_function, capsys):
-    parse_arguments(["--version", "user-list"])
+    parse_arguments(["--client-version", "user-list"])
     captured = capsys.readouterr()
     # Note(hguemar): argparse behaviour here changed on py3k
     if sys.version_info > (3, 0):
