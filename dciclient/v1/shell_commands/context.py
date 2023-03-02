@@ -25,7 +25,7 @@ _default_sso_url = "http://127.0.0.1:8180"
 
 def parse_arguments(parser, args, environment={}):
     parser.add_argument(
-        "--version", action="version", version="%(prog)s " + __version__
+        "--client-version", action="version", version="%(prog)s " + __version__
     )
     parser.add_argument(
         "--dci-login",

@@ -41,7 +41,9 @@ def create(context, args):
             "state",
             "data",
             "tags",
-            "released_at"
+            "released_at",
+            "display_name",
+            "version"
         ]
     }
     params["data"] = validate_json(context, "data", params["data"])
@@ -92,6 +94,8 @@ def update(context, args):
             "state",
             "data",
             "tags",
+            "display_name",
+            "version"
         ]
     }
 
