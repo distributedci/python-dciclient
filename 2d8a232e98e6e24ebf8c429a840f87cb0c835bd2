@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec589f44_078e5e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2023-03-03T07:17:01Z",
+      "side": 1,
+      "message": "Do we need to modify dci-create-component here also ?",
+      "revId": "2d8a232e98e6e24ebf8c429a840f87cb0c835bd2",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
