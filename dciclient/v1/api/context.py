@@ -16,10 +16,10 @@ import os.path
 
 try:
     from urlparse import parse_qsl
-    from urlparse import urlparse
+    from urlparse import urlparse, unquote
 except ImportError:
     from urllib.parse import parse_qsl
-    from urllib.parse import urlparse
+    from urllib.parse import urlparse, unquote
 import requests
 from requests.adapters import HTTPAdapter
 from requests.auth import AuthBase
@@ -103,7 +103,7 @@ class DciSignatureAuth(AuthBase):
             generate_headers(
                 {
                     "method": r.method,
-                    "endpoint": url.path,
+                    "endpoint": unquote(url.path),
                     "params": dict(parse_qsl(url.query)),
                     "host": url.netloc,
                     "data": self.get_body(r.body),
