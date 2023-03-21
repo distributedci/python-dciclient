@@ -79,6 +79,7 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 %files -n python2-%{srcname}
 %doc README.md
+%doc examples/check_kernel.sh
 %license LICENSE
 %{python2_sitelib}/*
 %{_bindir}/dcictl
@@ -92,6 +93,7 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 %files -n python3-%{srcname}
 %doc README.md
+%doc examples/check_kernel.sh
 %license LICENSE
 %{python3_sitelib}/*
 %{_bindir}/dcictl

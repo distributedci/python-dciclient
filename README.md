@@ -186,6 +186,15 @@ $ dci-rhel-latest-kernel-version --topic RHEL-9.2
 5.14.0-160.el9
 ```
 
+An example of how to use dci-rhel-latest-kernel-version is in the check_kernel.sh
+script located in the /usr/share/docs/python3-dciclient directory.
+
+an example of using it:
+
+```ShellSession
+$ ./check_kernel.sh RHEL-8.8 /opt/beaker/dci && dci-downloader RHEL-8.8 /opt/beaker/dci
+```
+
 ## dci-create-component
 
 to create a component, you can use the `dci-create-component`
