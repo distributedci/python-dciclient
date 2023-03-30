@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d76f83d_0cde1a09",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-03-30T12:51:36Z",
+      "side": 1,
+      "message": "Previously we were creating the canonical_name based on type and name. Would it make sense to use that value in the display_name as well? or should we keep display_name as a way for users to use whatever else they want?",
+      "revId": "58b975728114dffa8ccb4b65de2328d264cfeb48",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71374169_119ca043",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-03-30T12:51:36Z",
+      "side": 1,
+      "message": "We want to make this one required (last required argument), in the previous version we were asking for the \"name\".",
+      "revId": "58b975728114dffa8ccb4b65de2328d264cfeb48",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e05a547_331ab198",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-03-30T12:51:36Z",
+      "side": 1,
+      "message": "Can we include more real examples for both type and name? e.g.\n\ntype: operator, container-image\nname: jaeger-operator, nfs-subdir-external-provisioner",
+      "revId": "58b975728114dffa8ccb4b65de2328d264cfeb48",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "371fbfe5_1910ab14",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-03-30T12:51:36Z",
+      "side": 1,
+      "message": "Here the canonical_project_name included the version as name had it, but now version is in version, can you add it as well in here?\n\nAND\n\nWould it be best if stop using canonical_project_name and instead use display_name?",
+      "revId": "58b975728114dffa8ccb4b65de2328d264cfeb48",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
