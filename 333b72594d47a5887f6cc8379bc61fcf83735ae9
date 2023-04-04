@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f965292_0bd73550",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2023-04-04T10:36:21Z",
+      "side": 1,
+      "message": "Some comment inlined.\n\nI also think we can remove title and message everywhere for component\n\nWe are missing the version change to detect changes on the user agent.",
+      "revId": "333b72594d47a5887f6cc8379bc61fcf83735ae9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c27869_7efa959b",
+        "filename": "tests/shell_commands/test_cli.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2023-04-04T10:36:21Z",
+      "side": 1,
+      "message": "I would prefer to keep --version for consistency between dci tools",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 54
+      },
+      "revId": "333b72594d47a5887f6cc8379bc61fcf83735ae9",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}

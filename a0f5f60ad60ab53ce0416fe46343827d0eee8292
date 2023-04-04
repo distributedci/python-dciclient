@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e9ab8b_6b7f7a11",
+        "filename": "tox.ini",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2023-04-04T10:36:21Z",
+      "side": 0,
+      "message": "why removing this test ?",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "a0f5f60ad60ab53ce0416fe46343827d0eee8292",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
