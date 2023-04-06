@@ -16,6 +16,29 @@
       "message": "Thanks for all the work here, LGTM",
       "revId": "a6f0a198ec5039418b16855bdbfed48747eb8ccc",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d1bebb3_aae73cb3",
+        "filename": "test-requirements.txt",
+        "patchSetId": 15
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-04-06T09:48:01Z",
+      "side": 1,
+      "message": "Why would we need tox be installed in virtualenvs created by tox ?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "a6f0a198ec5039418b16855bdbfed48747eb8ccc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
