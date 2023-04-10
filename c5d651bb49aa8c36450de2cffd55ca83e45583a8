@@ -50,6 +50,23 @@
       "message": "We need to wait for dci-ansible and agents to be ready.",
       "revId": "c5d651bb49aa8c36450de2cffd55ca83e45583a8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b1718d6_61bb8fff",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-04-10T22:08:16Z",
+      "side": 1,
+      "message": "I\u0027m thinking that it would be nice to return get_or_create in here, similarly as is done in the git action plugin[1], but I see get_or_create is not exposed in the shell_commands/component.py \n\nWould it make sense to instead of using create_v2 in dciclient/v1/shell_commands/component.py to use get_or_create at least for the dci-create-component tool?\n\n\n[1] https://softwarefactory-project.io/r/plugins/gitiles/dci-ansible/+/refs/heads/master/action_plugins/git.py#126",
+      "revId": "c5d651bb49aa8c36450de2cffd55ca83e45583a8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
