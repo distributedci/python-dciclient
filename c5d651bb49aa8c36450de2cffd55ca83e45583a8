@@ -85,6 +85,24 @@
       "parentUuid": "1b1718d6_61bb8fff",
       "revId": "c5d651bb49aa8c36450de2cffd55ca83e45583a8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2c5a910_6487e4bb",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2023-04-18T14:26:54Z",
+      "side": 1,
+      "message": "@tony you can\u0027t change the api of dci-create-component without breaking your client.",
+      "parentUuid": "7139ffcf_bb8037de",
+      "revId": "c5d651bb49aa8c36450de2cffd55ca83e45583a8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
