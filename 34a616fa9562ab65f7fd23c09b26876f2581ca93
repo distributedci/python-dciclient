@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "34a616fa9562ab65f7fd23c09b26876f2581ca93",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6605c29_ecc32c3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-05-02T13:48:21Z",
+      "side": 1,
+      "message": "lgtm: it works\n\nI\u0027m wondering however if this feature should stay as this as an example for partners to iterate on, or if it should be merged into the rhel_kernel.py script, using python libraries instead of relying on the external jq[*] command.\n\n[*] which python-dciclient doesn\u0027t install",
+      "revId": "34a616fa9562ab65f7fd23c09b26876f2581ca93",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
