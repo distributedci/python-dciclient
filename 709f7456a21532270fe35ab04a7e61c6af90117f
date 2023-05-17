@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d61d65_417133d1",
+        "filename": "dciclient/rhel_kernel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2023-05-17T20:42:56Z",
+      "side": 1,
+      "message": "you need sys.exit(main()) here.",
+      "revId": "709f7456a21532270fe35ab04a7e61c6af90117f",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
