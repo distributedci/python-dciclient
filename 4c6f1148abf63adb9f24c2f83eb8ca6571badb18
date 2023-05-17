@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ae268f_7703432e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 606
+      },
+      "writtenOn": "2023-05-17T18:35:26Z",
+      "side": 1,
+      "message": "Thanks for Frederick for helping me debug some query issues and my own syntax error.",
+      "revId": "4c6f1148abf63adb9f24c2f83eb8ca6571badb18",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
