@@ -7,7 +7,7 @@
 
 Name:           python-%{srcname}
 # keep in sync with dciclient/version.py
-Version:        3.2.0
+Version:        3.2.1
 Release:        1.VERS%{?dist}
 Summary:        %{summary}
 
@@ -35,6 +35,7 @@ BuildRequires:  python2-devel
 Requires:       python-prettytable
 Requires:       python-requests >= 2.6
 Requires:       python-dciauth >= 2.1.7
+Requires:       python-argcomplete
 
 %description -n python2-%{srcname}
 %{summary}
@@ -55,6 +56,7 @@ Requires:       python3-prettytable
 Requires:       python36-requests
 %else
 Requires:       python3-requests
+Requires:       python3-argcomplete
 %endif
 Requires:       python3-dciauth >= 2.1.7
 
@@ -104,6 +106,9 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 
 %changelog
+* Thu Jun  8 2023 Frederic Lepied <flepied@redhat.com> 3.2.1-1
+- add autocompletion support
+
 * Sun Jun  4 2023 Frederic Lepied <flepied@redhat.com> 3.2.0-1
 - add delete_component api
 

@@ -1,4 +1,3 @@
 pytest>=2.6.2
--e ../dci-control-server
+../dci-control-server
 mock
-boto3
