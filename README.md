@@ -116,6 +116,15 @@ Commands:
   user-update                  Update a user.
 ```
 
+### auto completion
+
+To enable auto completion in `dcictl`, do the following commands:
+
+```ShellSession
+$ activate-global-python-argcomplete --user
+$ register-python-argcomplete dcictl
+```
+
 ## dci-vault
 
 If you want to store secrets in your YAML configuration files
