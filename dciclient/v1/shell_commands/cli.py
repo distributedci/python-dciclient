@@ -15,9 +15,15 @@
 # under the License.
 
 import argparse
-import sys
 from argparse import ArgumentParser
 from datetime import datetime
+import sys
+
+try:
+    import argcomplete
+    use_argcomplete = True
+except:
+    use_argcomplete = False
 from dciclient.version import __version__
 from dciclient.v1.shell_commands import context as dci_context
 
@@ -745,6 +751,9 @@ def parse_arguments(args, environment={}):
     p.add_argument("--limit", default=50)
     p.add_argument("--offset", default=0)
     p.set_defaults(command="pipeline-show-jobs")
+
+    if use_argcomplete:
+        argcomplete.autocomplete(parser)
 
     args = parser.parse_args(args)
 

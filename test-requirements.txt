@@ -1,4 +1,3 @@
-pytest
--e ../dci-control-server
+pytest>=2.6.2
+../dci-control-server
 mock
-boto3

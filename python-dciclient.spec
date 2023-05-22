@@ -6,7 +6,7 @@
 
 
 Name:           python-%{srcname}
-Version:        3.4.3
+Version:        3.5.0
 Release:        1.VERS%{?dist}
 Summary:        %{summary}
 
@@ -34,6 +34,7 @@ BuildRequires:  python2-devel
 Requires:       python-prettytable
 Requires:       python-requests >= 2.6
 Requires:       python-dciauth >= 2.1.7
+Requires:       python-argcomplete
 
 %description -n python2-%{srcname}
 %{summary}
@@ -54,6 +55,7 @@ Requires:       python3-prettytable
 Requires:       python36-requests
 %else
 Requires:       python3-requests
+Requires:       python3-argcomplete
 %endif
 Requires:       python3-dciauth >= 2.1.7
 
@@ -103,6 +105,9 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 
 %changelog
+* Tue Nov 21 2023 Frederic Lepied <flepied@redhat.com> 3.5.0-1
+- add autocompletion support
+
 * Tue Nov  7 2023 Frederic Lepied <flepied@redhat.com> 3.4.3-1
 - use the new build process compatible with PEP-0440
 
