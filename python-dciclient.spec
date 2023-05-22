@@ -7,7 +7,7 @@
 
 Name:           python-%{srcname}
 # keep in sync with dciclient/version.py
-Version:        3.1.0
+Version:        3.1.1
 Release:        1.VERS%{?dist}
 Summary:        %{summary}
 
@@ -35,6 +35,7 @@ BuildRequires:  python2-devel
 Requires:       python-prettytable
 Requires:       python-requests >= 2.6
 Requires:       python-dciauth >= 2.1.7
+Requires:       python-argcomplete
 
 %description -n python2-%{srcname}
 %{summary}
@@ -51,6 +52,7 @@ BuildRequires:  python3-rpm-macros
 BuildRequires:  python3-dciauth >= 2.1.7
 BuildRequires:  python3-devel
 Requires:       python3-prettytable
+Requires:       python3-argcomplete
 %if 0%{?is_EL7}
 Requires:       python36-requests
 %else
