@@ -70,6 +70,18 @@ def get_topic_id_from_name(context, name):
     return topic_list["topics"][0]["id"]
 
 
+def check_remoteci_validity(context):
+    topic_list = topic.list(context=context)
+    if topic_list.status_code != 200:
+        print("""error from the api: %s
+please check the following:
+  - that your machine is correctly time synced
+  - that your remoteci credentials is correctly downloaded from the DCI dashboard
+if you didn't fixed this issue, please contact distributed-ci@redhat.com
+        """ % topic_list.text)
+        sys.exit(1)
+
+
 def main():
     args = parse_arguments(sys.argv[1:], os.environ)
 
@@ -78,6 +90,8 @@ def main():
     if not context:
         print("No DCI credentials provided.")
         return 1
+
+    check_remoteci_validity(context)
 
     if args.topic_list:
         print_available_topics(context)
