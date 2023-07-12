@@ -35,7 +35,6 @@ def create(context, args):
             "type",
             "url",
             "team_id",
-            "topic_id",
             "state",
             "data",
             "tags",
@@ -44,6 +43,10 @@ def create(context, args):
     }
     params["data"] = validate_json(context, "data", params["data"])
     params["state"] = active_string(params["state"])
+    if getattr(args, "product_id"):
+        params["product_id"] = args.product_id
+    if getattr(args, 'topic_id'):
+        params["topic_id"] = args.topic_id
     return component.create_v2(context, **params)
 
 

@@ -23,6 +23,7 @@ from dciclient.v1.shell_commands.cli import _create_array_argument
 from dciclient.v1.shell_commands.cli import _date_isoformat
 from dciclient.v1.shell_commands import context as dci_context
 from dciclient.v1.shell_commands import component
+from dciclient.v1.shell_commands import product
 from dciclient.v1.shell_commands import topic
 from dciclient.v1.shell_commands import team
 from dciclient.v1.shell_commands import columns
@@ -62,6 +63,10 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "topic",
         help="Topic type and version, examples: OCP-4.12 or RHEL-9.1",
+    )
+    p.add_argument(
+        "product",
+        help="Product, examples: OpenShift, RHEL, OpenStack",
     )
     p.add_argument(
         "name",
@@ -128,9 +133,34 @@ def get_topic_id(context, args):
     return result_json["topics"][0].get("id")
 
 
+def get_product_id(context, args):
+    a = copy.deepcopy(args)
+
+    # Set defaults
+    a.where = "name:%s" % args.product
+    a.sort = "-created_at"
+    a.limit = 50
+    a.offset = 0
+
+    response = product.list(context, a)
+    try:
+        result_json = response.json()
+    except Exception:
+        print(response)
+
+    if not result_json["_meta"]["count"]:
+        print("Error, no product '%s' was found" % args.product)
+        sys.exit(1)
+
+    return result_json["products"][0].get("id")
+
+
 def run(context, args):
     args.team_id = get_team_id(context, args)
-    args.topic_id = get_topic_id(context, args)
+    if getattr(args, 'topic'):
+        args.topic_id = get_topic_id(context, args)
+    if getattr(args, 'product'):
+        args.product_id = get_product_id(context, args)
 
     # Required arguments for component creation
     args.state = True

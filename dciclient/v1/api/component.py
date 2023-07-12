@@ -24,7 +24,7 @@ def create(
     context,
     name,
     type,
-    topic_id,
+    topic_id=None,
     team_id=None,
     canonical_project_name=None,
     data={},
@@ -32,6 +32,7 @@ def create(
     state="active",
     tags=[],
     released_at=None,
+    product_id=None
 ):
     return base.create(
         context,
@@ -41,6 +42,7 @@ def create(
         canonical_project_name=canonical_project_name,
         data=data,
         url=url,
+        product_id=product_id,
         topic_id=topic_id,
         team_id=team_id,
         state=state,
