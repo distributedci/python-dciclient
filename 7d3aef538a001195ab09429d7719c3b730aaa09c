@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98871450_0bffd738",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2023-07-20T14:52:23Z",
+      "side": 1,
+      "message": "If we move product_id parameter after topic_id, it should be perfect.",
+      "revId": "7d3aef538a001195ab09429d7719c3b730aaa09c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c0300b_f1961ba9",
+        "filename": "dciclient/v1/api/component.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2023-07-20T14:52:23Z",
+      "side": 1,
+      "message": "I\u0027d move product_id at last position for compatibility puropose\n\nOtherwise, you\u0027d need to fix tests and other projects calling this API as topic_id was required. That\u0027s why tests/test_job.py::test_job_upgraded was broken.",
+      "revId": "7d3aef538a001195ab09429d7719c3b730aaa09c",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
