@@ -1,0 +1,10 @@
+Verified+1: dci-ci-bot <dci-ci-bot@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Code-Review+1: Guillaume Vincent <gvincent@redhat.com>
+Code-Review+2: Yassine Lamgarchal <yassine.lamgarchal@redhat.com>
+Workflow+1: Yassine Lamgarchal <yassine.lamgarchal@redhat.com>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Tue, 25 Jul 2023 14:24:08 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/28860
+Project: python-dciclient
+Branch: refs/heads/master
