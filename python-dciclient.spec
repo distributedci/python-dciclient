@@ -13,7 +13,7 @@ Summary:        %{summary}
 
 License:        ASL 2.0
 URL:            https://github.com/redhat-cip/python-%{srcname}
-Source0:        %{srcname}-%{version}.tar.gz
+Source0:        %{srcname}-%{version}.dev0+VERS.tar.gz
 
 BuildArch:      noarch
 
@@ -62,7 +62,7 @@ Requires:       python3-dciauth >= 2.1.7
 %{summary}
 
 %prep
-%autosetup -n %{srcname}-%{version}
+%autosetup -n %{srcname}-%{version}.dev0+VERS
 
 %build
 %if 0%{?is_EL7}
