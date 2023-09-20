@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d93ab603_61393fde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-09-20T15:27:51Z",
+      "side": 1,
+      "message": "Thanks Guillaume, could you also remove it from the create_component.py[1]\n\n[1] https://softwarefactory-project.io/r/plugins/gitiles/python-dciclient/+/refs/heads/master/dciclient/create_component.py",
+      "revId": "1f00b2f052c9dae96c90498a4e80704d7586e928",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
