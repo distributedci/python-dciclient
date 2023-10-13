@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2022 Red Hat, Inc.
+# Copyright 2022-2023 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -141,7 +141,24 @@ def run(context, args):
     args.display_name = "%s %s" % (capitalized_name, args.version)
     args.command = "component-create"
 
-    return component.create(context, args)
+    c = component.create(context, args)
+    if c.status_code == 409:
+        a = copy.deepcopy(args)
+        a.sort = "-created_at"
+        a.offset = 0
+        a.where = "type:%s,version:%s" % (args.type, args.version)
+        a.limit = 1
+        a.id = args.topic_id
+        try:
+            c = component.list(context, a)
+        except Exception:
+            print(c)
+
+        if not c.json()["_meta"]["count"]:
+            print("Error, unable to retrieve component")
+            sys.exit(1)
+
+    return c
 
 
 def main():
