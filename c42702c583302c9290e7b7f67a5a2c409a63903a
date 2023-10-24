@@ -16,6 +16,23 @@
       "message": "I tried to use get_or_create but the implementation required way more changes in the shell component and the base component that seemed too much to what is currently in this change.",
       "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ebe788_cfa4b6bd",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2023-10-24T16:25:39Z",
+      "side": 1,
+      "message": "I think this is better suited in a `get_or_create()` method, probably add a new one to handle this operation?",
+      "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
