@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06e0385f_64edc236",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-10-24T13:00:08Z",
+      "side": 1,
+      "message": "I tried to use get_or_create but the implementation required way more changes in the shell component and the base component that seemed too much to what is currently in this change.",
+      "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
