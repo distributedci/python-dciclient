@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdb40522_124a032c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-10-26T16:44:37Z",
+      "side": 1,
+      "message": "I gave it a try but have some challenges.\nget_or_create comes from api/v1/component, dci-create-component is using shell_command/create, I tried exposing it in the latter as create() but the problem in there is that as data is expected and validated later in api/v1/base the data is used as part of the search and that raises an exception as data is not expected as a search element.\n\nLet me know if you would like a sync and discuss the options in here. Thanks!",
+      "parentUuid": "8467f4f6_7fc50f12",
+      "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94ebe788_cfa4b6bd",
         "filename": "dciclient/create_component.py",
         "patchSetId": 1
