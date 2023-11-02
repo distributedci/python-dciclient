@@ -61,12 +61,14 @@ def engine(request):
 
 
 @pytest.fixture
-def empty_db(request, engine):
-    def fin():
-        for table in reversed(dci.db.models2.Base.metadata.sorted_tables):
-            engine.execute(table.delete())
-
-    request.addfinalizer(fin)
+def empty_db(engine):
+    with contextlib.closing(engine.connect()) as con:
+        meta = models2.Base.metadata
+        trans = con.begin()
+        for table in reversed(meta.sorted_tables):
+            con.execute(table.delete())
+        trans.commit()
+    return True
 
 
 @pytest.fixture(scope="session", autouse=True)
