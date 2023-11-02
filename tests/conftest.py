@@ -14,6 +14,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import contextlib
 import pytest
 import sqlalchemy
 import sqlalchemy_utils.functions
@@ -23,6 +24,7 @@ from sqlalchemy.orm import sessionmaker
 import dci
 import dci.app
 import dci.dci_config
+from dci.db import models2
 from dciclient import create_component as dci_create_component
 from dciclient import diff_jobs as dci_diff_jobs
 from dciclient import find_latest_component as dci_find_latest_component
@@ -61,12 +63,14 @@ def engine(request):
 
 
 @pytest.fixture
-def empty_db(request, engine):
-    def fin():
-        for table in reversed(dci.db.models2.Base.metadata.sorted_tables):
-            engine.execute(table.delete())
-
-    request.addfinalizer(fin)
+def empty_db(engine):
+    with contextlib.closing(engine.connect()) as con:
+        meta = models2.Base.metadata
+        trans = con.begin()
+        for table in reversed(meta.sorted_tables):
+            con.execute(table.delete())
+        trans.commit()
+    return True
 
 
 @pytest.fixture(scope="session", autouse=True)
