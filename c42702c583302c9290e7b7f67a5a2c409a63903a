@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1fac3d9_3b8a1b95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-11-03T16:20:49Z",
+      "side": 1,
+      "message": "Thanks for the sync, I\u0027ve given it a try, I ended up implementing directly in the script calling the api get_or_create.",
+      "parentUuid": "d9877329_f1678634",
+      "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94ebe788_cfa4b6bd",
         "filename": "dciclient/create_component.py",
         "patchSetId": 1
@@ -84,6 +102,24 @@
       "writtenOn": "2023-10-24T16:25:39Z",
       "side": 1,
       "message": "I think this is better suited in a `get_or_create()` method, probably add a new one to handle this operation?",
+      "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6944773e_b06078e7",
+        "filename": "dciclient/create_component.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 667
+      },
+      "writtenOn": "2023-11-03T16:20:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "94ebe788_cfa4b6bd",
       "revId": "c42702c583302c9290e7b7f67a5a2c409a63903a",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
