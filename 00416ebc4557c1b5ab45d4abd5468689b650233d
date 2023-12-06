@@ -22,6 +22,30 @@
       },
       "revId": "00416ebc4557c1b5ab45d4abd5468689b650233d",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d8cfc8_f5664200",
+        "filename": "python-dciclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2023-12-06T14:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "994e5670_063ae20c",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "00416ebc4557c1b5ab45d4abd5468689b650233d",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
