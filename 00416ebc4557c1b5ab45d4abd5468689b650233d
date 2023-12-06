@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "994e5670_063ae20c",
+        "filename": "python-dciclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2023-12-06T13:50:55Z",
+      "side": 1,
+      "message": "this would need to be `python-setuptools`, there\u0027s no `python2-setuptools` in CentOS 7 / RHEL 7 repositories.\n\nThe `python2-setuptools` we have is either from the DCI-Extras (which we may want to remove ?) or some RDO repository.",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "00416ebc4557c1b5ab45d4abd5468689b650233d",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
