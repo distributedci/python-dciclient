@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2015-2022 Red Hat, Inc.
+# Copyright 2015-2024 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -250,3 +250,21 @@ def test_job_key_value(runner, job_id):
 
     runner.invoke(["job-delete-key-value", job_id, "key_1"])
     j = runner.invoke(["job-show", job_id])["job"]
+
+
+def test_create_job(runner, topic, component):
+    url = "https://company.com/product/"
+    job = runner.invoke_create_job(
+        [
+            "--url", url,
+            "--tags", "tag1,tag2",
+            "--topic", topic,
+            "--name", "my-job",
+            "--comment", "comment",
+            "--comp", component["name"],
+            "--remoteci", "remoteci",
+        ]
+    )["job"]
+    assert job["tags"] == ["tag1", "tag2"]
+    assert job["url"] == url
+    assert job["comment"] == "comment"
