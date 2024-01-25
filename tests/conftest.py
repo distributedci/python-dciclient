@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2015-2022 Red Hat, Inc.
+# Copyright 2015-2024 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -26,6 +26,7 @@ import dci.dci_config
 from dci import auth
 from dci.db import models2
 from dciclient import create_component as dci_create_component
+from dciclient import create_job as dci_create_job
 from dciclient import diff_jobs as dci_diff_jobs
 from dciclient import find_latest_component as dci_find_latest_component
 from dciclient.v1.api import context as api_context
@@ -210,6 +211,12 @@ def runner_factory(context):
         environment = {}
         args = dci_create_component.parse_arguments(arguments, environment)
         response = dci_create_component.run(context, args)
+        return response.json() if response else None
+
+    def invoke_create_job(arguments):
+        environment = {}
+        args = dci_create_job.parse_arguments(arguments, environment)
+        response = dci_create_job.run(context, args)
         return response.json() if response else None
 
     def invoke_find_latest_component(arguments):
