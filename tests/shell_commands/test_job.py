@@ -267,6 +267,8 @@ def test_create_job(runner_remoteci, topic, topic_id, job_id, component, remotec
             "--key-value", "key=42",
             "--data", '{"jenkins_url": "https://jenkins.corp.com/job/name/42"}',
             "--previous-job-id", job_id,
+            "--duration", "42",
+            "--created-at", "2023-01-25T20:35:39.043632",
         ]
     )["job"]
     assert job["tags"] == ["tag1", "tag2"]
@@ -280,3 +282,5 @@ def test_create_job(runner_remoteci, topic, topic_id, job_id, component, remotec
     assert job["remoteci_id"] == remoteci_id
     assert job["data"]["jenkins_url"] == "https://jenkins.corp.com/job/name/42"
     assert job["previous_job_id"] == job_id
+    assert job["duration"] == 42
+    assert job["created_at"] == "2023-01-25T20:35:39.043632"
