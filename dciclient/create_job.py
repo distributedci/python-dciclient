@@ -26,6 +26,7 @@ from dciclient.v1.shell_commands import topic
 from dciclient.v1.shell_commands import component
 from dciclient.v1.shell_commands import remoteci
 from dciclient.v1.shell_commands import columns
+from dciclient.v1.shell_commands.cli import _date_isoformat
 from dciclient.printer import print_response
 
 
@@ -54,6 +55,17 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "--url",
         help="URL to attach to the job",
+    )
+    p.add_argument(
+        "--duration",
+        help="duration in seconds of the job",
+        type=int,
+    )
+    p.add_argument(
+        "--created-at",
+        help="The creation date of the job",
+        default=None,
+        type=_date_isoformat,
     )
     p.add_argument(
         "--comment",
@@ -149,6 +161,8 @@ def run(context, args):
             "comment",
             "components",
             "configuration",
+            "created_at",
+            "duration",
             "data",
             "name",
             "previous_job_id",
