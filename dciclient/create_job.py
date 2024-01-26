@@ -26,6 +26,7 @@ from dciclient.v1.shell_commands import topic
 from dciclient.v1.shell_commands import component
 from dciclient.v1.shell_commands import remoteci
 from dciclient.v1.shell_commands import columns
+from dciclient.v1.shell_commands.cli import _date_isoformat
 from dciclient.printer import print_response
 
 
@@ -54,6 +55,17 @@ def parse_arguments(args, environment={}):
     p.add_argument(
         "--url",
         help="URL to attach to the job",
+    )
+    p.add_argument(
+        "--duration",
+        help="duration in seconds of the job",
+        type=int,
+    )
+    p.add_argument(
+        "--created-at",
+        help="The creation date of the job",
+        default=None,
+        type=_date_isoformat,
     )
     p.add_argument(
         "--comment",
@@ -134,13 +146,26 @@ def get_component_id(context, args, name):
     return get_object_id(context, args, name, "components", component.list)
 
 
+def get_json(response, key, error_msg):
+    result_json = response.json()
+
+    if key not in result_json:
+        if "payload" in result_json and "error" in result_json["payload"]:
+            print("%s: %s" % (error_msg, result_json["payload"]["error"]))
+        else:
+            print(error_msg)
+        sys.exit(1)
+    return result_json[key]
+
+
 def run(context, args):
     args.topic_id = get_topic_id(context, args)
     args.remoteci_id = get_remoteci_id(context, args)
     # required for component lookup
     args.id = args.topic_id
-    args.components = [get_component_id(context, args, c_name)
-                       for c_name in args.components]
+    args.components = [
+        get_component_id(context, args, c_name) for c_name in args.components
+    ]
     args.command = "job-create"
 
     params = {
@@ -149,6 +174,7 @@ def run(context, args):
             "comment",
             "components",
             "configuration",
+            "duration",
             "data",
             "name",
             "previous_job_id",
@@ -160,16 +186,7 @@ def run(context, args):
 
     j = dci_job.create(context, args.topic_id, **params)
 
-    job = j.json()
-
-    if "job" not in job:
-        if "payload" in job and "error" in job["payload"]:
-            print("Error, unable to create job: %s" % job["payload"]["error"])
-        else:
-            print("Error, unable to create job")
-        sys.exit(1)
-
-    job = job["job"]
+    job = get_json(j, "job", "Error, unable to create job")
 
     # add key/value
     for kv in args.kv:
@@ -179,38 +196,19 @@ def run(context, args):
         except ValueError:
             fvalue = value
         res = dci_job.add_kv(context, job["id"], key, fvalue)
-        try:
-            result_json = res.json()
-        except Exception:
-            print(res)
-            sys.exit(1)
+        get_json(res, "kv", "Error, unable to add key/value (%s/%s)" % (key, value))
 
-        if "kv" not in result_json:
-            if "payload" in result_json and "error" in result_json["payload"]:
-                print("Error, unable to add key/value (%s/%s): %s"
-                      % (key, value, result_json["payload"]["error"]))
-            else:
-                print("Error, unable to add key/value: %s/%s" % (key, value))
-            sys.exit(1)
+    # created_at can only be set after the job has been created
+    if args.created_at:
+        res = dci_job.update(
+            context, id=job["id"], created_at=args.created_at, etag=job["etag"]
+        )
+        get_json(res, "job", "Error, unable to update job for created_at")
 
     # refresh job a key/value has been added
-    if args.kv:
+    if args.kv or args.created_at:
         j = dci_job.get(context, job["id"])
-        try:
-            result_json = j.json()
-        except Exception:
-            print(j)
-            sys.exit(1)
-
-        if "job" not in result_json:
-            if "payload" in result_json and "error" in result_json["payload"]:
-                print("Error, unable to refresh job: %s"
-                      % result_json["payload"]["error"])
-            else:
-                print("Error, unable to refresh job")
-            sys.exit(1)
-
-        job = result_json["job"]
+        get_json(j, "job", "Error, unable to refresh job")
 
     return j
 
