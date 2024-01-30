@@ -16,6 +16,23 @@
       "message": "Code is functional/tested, but usually we create subcommand instead of a separate so needs input from the team. If they agree, I\u0027ll move forward with the review.",
       "revId": "93bc887897aa5bdae5022ed31c2b2ba5633cb5ad",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b7025b_b87ffe49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2024-01-30T15:56:18Z",
+      "side": 1,
+      "message": "Is there any reason not to create a new \"job-create\" subcommand ? \nIf possible, the team prefers to keep dcictl consistent in that regard, unless there\u0027s a reason.",
+      "revId": "93bc887897aa5bdae5022ed31c2b2ba5633cb5ad",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
