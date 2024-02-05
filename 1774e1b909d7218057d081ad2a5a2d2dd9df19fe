@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "1774e1b909d7218057d081ad2a5a2d2dd9df19fe",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "642c136c_7a15a664",
+        "filename": "dciclient/create_job.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2024-02-05T14:24:58Z",
+      "side": 1,
+      "message": "Depends-on: https://softwarefactory-project.io/r/c/dci-control-server/+/30692\n\nWe need this discussion to be sorted on the server side",
+      "revId": "1774e1b909d7218057d081ad2a5a2d2dd9df19fe",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
