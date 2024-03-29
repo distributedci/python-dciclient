@@ -23,6 +23,7 @@ BuildArch:      noarch
 %package -n python2-%{srcname}
 Summary: %{summary}
 %{?python_provide:%python_provide python2-%{srcname}}
+BuildRequires:  python-dateutil
 BuildRequires:  python-prettytable
 BuildRequires:  python-psycopg2
 BuildRequires:  python-requests >= 2.6
@@ -31,6 +32,7 @@ BuildRequires:  python-setuptools
 BuildRequires:  python2-rpm-macros
 BuildRequires:  python-dciauth >= 2.1.7
 BuildRequires:  python2-devel
+Requires:       python2-dateutil
 Requires:       python-prettytable
 Requires:       python-requests >= 2.6
 Requires:       python-dciauth >= 2.1.7
