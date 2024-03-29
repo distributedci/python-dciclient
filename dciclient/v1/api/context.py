@@ -11,8 +11,11 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from datetime import datetime, timedelta, timezone
 import os
 import os.path
+import re
+import sys
 
 try:
     from urlparse import parse_qsl
@@ -27,6 +30,34 @@ from requests.packages.urllib3.util.retry import Retry
 
 from dciauth.v2.headers import generate_headers
 from dciclient import version
+
+
+def _extract_date_from_headers(headers):
+    headers = str(headers)
+    exp = re.compile(r"'Date': '([^']+)'")
+    res = exp.search(headers)
+    if res:
+        return res.group(1)
+    else:
+        return None
+
+
+def _check_server_time(response, *args, **kwargs):
+    # Workaround: headers are stored in a structure derived MutableMapping
+    # it is not thread-safe and cause weird issues with tests suite
+    date = _extract_date_from_headers(response.headers)
+    if date:
+        server_time = datetime.strptime(date, "%a, %d %b %Y %X %Z")
+        server_time = server_time.replace(tzinfo=timezone.utc)
+        client_time = datetime.now(timezone.utc)
+        delta_time = abs((client_time - server_time).total_seconds())
+        max_time = timedelta(minutes=5).total_seconds()
+        if delta_time > max_time:
+            print("ERROR: Your system and DCI servers clocks are "
+                  "unsynchronized. API results might be incorrect. "
+                  "Please check your system clock.")
+            sys.exit(1)
+    return response
 
 
 class DciContextBase(object):
@@ -48,6 +79,7 @@ class DciContextBase(object):
         retries = Retry(total=max_retries, backoff_factor=0.1)
         session.mount("http://", HTTPAdapter(max_retries=retries))
         session.mount("https://", HTTPAdapter(max_retries=retries))
+        session.hooks['response'].append(_check_server_time)
 
         return session
 
