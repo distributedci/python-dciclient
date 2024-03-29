@@ -14,6 +14,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import pytest
+
 from dciclient.printer import print_response
 from dciclient.v1.shell_commands import user
 
@@ -74,3 +76,23 @@ def test_printer_delete(capsys, runner, team_id):
     print_response(result, format="table", verbose=False, columns=user.COLUMNS)
     captured = capsys.readouterr()
     assert captured.out == ""
+
+
+class NamedDict(dict):
+    __getattr__ = dict.__getitem__
+    __setattr__ = dict.__setitem__
+
+
+def test_print_response_with_unsynced_time():
+    from collections import namedtuple
+    FakeResponse = namedtuple('FakeResponse', ['content', 'status_code'])
+    FakeContent = namedtuple('FakeContent', ['message'])
+    response = FakeResponse(
+        content=FakeContent(
+            message="Hmac2Mechanism failed: signature is expired"),
+        status_code=400)
+    with pytest.raises(SystemExit) as e:
+        print_response(response, format="table", verbose=False, columns=user.COLUMNS)
+        assert e.msg == ("ERROR: Your system and DCI servers clocks are "
+                         "unsynchronized. API results might be incorrect. "
+                         "Please check your system clock.")
