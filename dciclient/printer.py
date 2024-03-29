@@ -14,8 +14,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from __future__ import print_function
+
 import csv
 import json
+import sys
 
 import prettytable
 
@@ -120,6 +123,9 @@ def print_response(response, format, verbose, columns):
         try:
             if response.status_code == 204:
                 return
+            if response.status_code == 401:
+                print("%s\n" % response.content.message, file=sys.stderr)
+                sys.exit(1)
             result_json = response.json()
             print_result(result_json, format, verbose, columns)
         except Exception:

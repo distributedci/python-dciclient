@@ -13,6 +13,9 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+from collections import namedtuple
+
+import pytest
 
 from dciclient.printer import print_response
 from dciclient.v1.shell_commands import user
@@ -74,3 +77,20 @@ def test_printer_delete(capsys, runner, team_id):
     print_response(result, format="table", verbose=False, columns=user.COLUMNS)
     captured = capsys.readouterr()
     assert captured.out == ""
+
+
+class NamedDict(dict):
+    __getattr__ = dict.__getitem__
+    __setattr__ = dict.__setitem__
+
+
+def test_print_response_with_unsynced_time():
+    FakeResponse = namedtuple('FakeResponse', ['content', 'status_code'])
+    FakeContent = namedtuple('FakeContent', ['message'])
+    response = FakeResponse(
+        content=FakeContent(
+            message="Hmac2Mechanism failed: signature is expired"),
+        status_code=401)
+    with pytest.raises(SystemExit) as e:
+        print_response(response, format="table", verbose=False, columns=user.COLUMNS)
+        assert e.status_code == 401
