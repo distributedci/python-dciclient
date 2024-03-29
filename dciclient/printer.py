@@ -16,6 +16,7 @@
 
 import csv
 import json
+import sys
 
 import prettytable
 
@@ -120,6 +121,12 @@ def print_response(response, format, verbose, columns):
         try:
             if response.status_code == 204:
                 return
+            if response.status_code == 400 and \
+               response.content.message == \
+               "Hmac2Mechanism failed: signature is expired":
+                print("ERROR: Hmac2Mechanism failed: signature is expired\n"
+                      "Your system clock might unsynchronized. Please check !\n")
+                sys.exit(1)
             result_json = response.json()
             print_result(result_json, format, verbose, columns)
         except Exception:
