@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "9def974300b5b6df4b4bd44b72902e4467333bf1",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98fce878_0c2da6f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-03T14:59:37Z",
+      "side": 1,
+      "message": "hello,\ncan we try to catch the error message sent by the control server instead ? https://github.com/redhat-cip/dci-control-server/blob/master/dci/auth_mechanism.py#L147-L151",
+      "revId": "9def974300b5b6df4b4bd44b72902e4467333bf1",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
