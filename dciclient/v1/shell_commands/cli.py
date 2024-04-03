@@ -567,7 +567,6 @@ def parse_arguments(args, environment={}):
     p = subparsers.add_parser(
         "job-delete-file", help="Delete a job file.", parents=[base_parser]
     )
-    p.add_argument("id")
     p.add_argument("--file-id", required=True)
     p.set_defaults(command="job-delete-file")
 
