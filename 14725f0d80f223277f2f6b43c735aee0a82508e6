@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf79f1c_d8f20959",
+        "filename": "dciclient/printer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 648
+      },
+      "writtenOn": "2024-04-03T23:12:59Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to parse the message, just checking the return code and re-raising an exception should work: it goes to the catch-all except below and print the message returned from DCC.\nAs a side note: I think https://github.com/redhat-cip/dci-control-server/blob/master/dci/auth_mechanism.py#L206 should return with status_code\u003d401 @gvincent",
+      "revId": "14725f0d80f223277f2f6b43c735aee0a82508e6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
