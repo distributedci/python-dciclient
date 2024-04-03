@@ -103,7 +103,6 @@ def file_list(context, args):
 
 
 def file_delete(context, args):
-    dci_file.delete(context, id=args.file_id)
     return dci_file.delete(context, id=args.file_id)
 
 
