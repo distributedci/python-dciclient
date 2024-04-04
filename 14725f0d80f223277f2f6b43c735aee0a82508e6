@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "789bf5d8_6334a8e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2024-04-04T12:24:06Z",
+      "side": 1,
+      "message": "Yeah, it should 401, but server is returning, hence the message check, but it\u0027s likely a bug in the control server.\nOne lead I\u0027m investigating is that we catch the exception somewhere, and instead of re-raising it, we copy the message in a new exception (so it gets default status_code 400)",
+      "revId": "14725f0d80f223277f2f6b43c735aee0a82508e6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcf79f1c_d8f20959",
