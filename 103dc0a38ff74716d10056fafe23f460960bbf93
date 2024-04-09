@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b5fc78_23589132",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 166
+      },
+      "writtenOn": "2024-04-09T10:20:09Z",
+      "side": 1,
+      "message": "Yep, I was testing the error message, since the status code was too generic (400).\nI changed status code on the server to 401, and moved the error message to stderr",
+      "revId": "103dc0a38ff74716d10056fafe23f460960bbf93",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
