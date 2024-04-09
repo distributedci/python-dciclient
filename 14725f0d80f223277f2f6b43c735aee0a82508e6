@@ -18,6 +18,23 @@
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a097338_81ea2b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-09T08:27:04Z",
+      "side": 1,
+      "message": "In my opinion the client should display the content of the error message returned by the API. It should not interpret it, just basic stderr.\n\nChecking the value of the error message is not good, because this check will fail as soon as we change the error message.\n\nSo if the problem is the error message not displayed, then this patch should display the content of the error message.\n\nIf the client is displaying the error message, but the error message is not explicit/good enough, then we should update the error message on the server, not the client.\n\nAnother solution is to send the error codes in the API. But this solution will require some changes in the server first, and I don\u0027t know if this is what we want.",
+      "revId": "14725f0d80f223277f2f6b43c735aee0a82508e6",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcf79f1c_d8f20959",
