@@ -1,0 +1,9 @@
+Code-Review+2: Guillaume Vincent <gvincent@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Verified+1: dci-ci-bot <dci-ci-bot@redhat.com>
+Workflow+1: Haïkel Guémar <hguemar@fedoraproject.org>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Tue, 09 Apr 2024 09:53:13 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/31182
+Project: python-dciclient
+Branch: refs/heads/master
