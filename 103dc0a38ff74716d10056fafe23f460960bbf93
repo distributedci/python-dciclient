@@ -33,6 +33,23 @@
       "message": "Can you add this logic please ?\n\n4xx error -\u003e display error message coming from the server\n5xx error -\u003e display something like \"oops sorry something goes wrong\"",
       "revId": "103dc0a38ff74716d10056fafe23f460960bbf93",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06eb9d93_f63666ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-12T08:00:54Z",
+      "side": 1,
+      "message": "Maybe there\u0027s something I don\u0027t understand.\nBut we don\u0027t want to detect the \"authentication signature has expired\".\nWe want to display the error message coming from the server.",
+      "revId": "103dc0a38ff74716d10056fafe23f460960bbf93",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
