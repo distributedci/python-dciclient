@@ -16,6 +16,23 @@
       "message": "Yep, I was testing the error message, since the status code was too generic (400).\nI changed status code on the server to 401, and moved the error message to stderr",
       "revId": "103dc0a38ff74716d10056fafe23f460960bbf93",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89d73190_4fc0b3cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1440
+      },
+      "writtenOn": "2024-04-12T07:57:35Z",
+      "side": 1,
+      "message": "Can you add this logic please ?\n\n4xx error -\u003e display error message coming from the server\n5xx error -\u003e display something like \"oops sorry something goes wrong\"",
+      "revId": "103dc0a38ff74716d10056fafe23f460960bbf93",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
