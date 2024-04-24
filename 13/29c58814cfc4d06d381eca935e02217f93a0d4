@@ -1,0 +1,10 @@
+Code-Review+2: Guillaume Vincent <gvincent@redhat.com>
+Code-Review+2: Jorge Gallegos <jgallego@redhat.com>
+Workflow+1: Guillaume Vincent <gvincent@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Code-Review+2: François Charlier <francois.charlier@redhat.com>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Wed, 24 Apr 2024 15:25:29 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/31400
+Project: python-dciclient
+Branch: refs/heads/master
