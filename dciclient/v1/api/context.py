@@ -23,7 +23,7 @@ except ImportError:
 import requests
 from requests.adapters import HTTPAdapter
 from requests.auth import AuthBase
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util.retry import Retry
 
 from dciauth.v2.headers import generate_headers
 from dciclient import version
@@ -45,7 +45,12 @@ class DciContextBase(object):
             user_agent = "python-dciclient_%s" % version.__version__
         session.headers["User-Agent"] = user_agent
         session.headers["Client-Version"] = "python-dciclient_%s" % version.__version__
-        retries = Retry(total=max_retries, backoff_factor=0.1)
+        retries = Retry(
+            total=max_retries,
+            backoff_factor=0.1,
+            status_forcelist=(413, 429, 500, 502, 503, 504),
+            raise_on_status=False,
+        )
         session.mount("http://", HTTPAdapter(max_retries=retries))
         session.mount("https://", HTTPAdapter(max_retries=retries))
 
