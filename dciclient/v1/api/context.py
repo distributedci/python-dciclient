@@ -45,7 +45,9 @@ class DciContextBase(object):
             user_agent = "python-dciclient_%s" % version.__version__
         session.headers["User-Agent"] = user_agent
         session.headers["Client-Version"] = "python-dciclient_%s" % version.__version__
-        retries = Retry(total=max_retries, backoff_factor=0.1)
+        retries = Retry(
+            total=max_retries, backoff_factor=0.1, status_forcelist=(500, 502, 503, 504)
+        )
         session.mount("http://", HTTPAdapter(max_retries=retries))
         session.mount("https://", HTTPAdapter(max_retries=retries))
 
