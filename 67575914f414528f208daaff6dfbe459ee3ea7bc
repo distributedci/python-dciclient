@@ -16,6 +16,23 @@
       "message": "will implement unit tests to validate the change",
       "revId": "67575914f414528f208daaff6dfbe459ee3ea7bc",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f3486c_ca1978fe",
+        "filename": "dciclient/v1/api/context.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2024-09-12T15:44:22Z",
+      "side": 1,
+      "message": "we could also set the default values in the function definition JIC, to not fail if max_retries were not provided\n```\ndef _build_http_session(user_agent\u003dNone, max_retries\u003d3)\n```",
+      "revId": "67575914f414528f208daaff6dfbe459ee3ea7bc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
