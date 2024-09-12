@@ -15,8 +15,9 @@
 # under the License.
 
 import os
+import sys
 from mock import patch
-from pytest import raises
+from pytest import raises, mark
 from dciclient.v1.shell_commands.cli import parse_arguments
 from dciclient.v1.shell_commands.context import _default_dci_cs_url
 from dciclient.version import __version__
@@ -136,9 +137,8 @@ def test_parse_arguments_dci_cs_url_overload_from_env():
 
 
 # fear test
-@patch("sys.exit")
-def test_parse_arguments_user_create_mutually_exclusive_boolean_flags(exit_function):
-    with raises(TypeError):
+def test_parse_arguments_user_create_mutually_exclusive_boolean_flags():
+    with raises(SystemExit):
         parse_arguments(
             [
                 "user-create",
@@ -152,7 +152,6 @@ def test_parse_arguments_user_create_mutually_exclusive_boolean_flags(exit_funct
                 "--no-active",
             ]
         )
-        assert exit_function.called
 
 
 def test_parse_arguments_sso():
