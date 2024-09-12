@@ -16,6 +16,24 @@
       "message": "you could also explicitly expect the SystemExit exception to be raised:\n```\n    with pytest.raises(SystemExit):\n        parse_arguments(\n            [\n                \"user-create\",\n                \"--name\", \"foo\",\n                \"--password\", \"bar\",\n                \"--email\", \"foo@foo.bar\",\n                \"--active\",\n                \"--no-active\",\n            ]\n        )\n    assert exit_function.called\n```\n\nlike here: https://stackoverflow.com/questions/30256332/verify-the-error-code-or-message-from-systemexit-in-pytest",
       "revId": "1f0963795ef350101dbc9459f8fd8ac6b2048cd8",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be83a3af_7ffdc062",
+        "filename": "tests/shell_commands/test_cli.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 28
+      },
+      "writtenOn": "2024-09-12T23:02:07Z",
+      "side": 1,
+      "message": "Oh, thanks!",
+      "parentUuid": "c21258fd_c7c96c38",
+      "revId": "1f0963795ef350101dbc9459f8fd8ac6b2048cd8",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
