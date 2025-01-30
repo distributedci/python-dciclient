@@ -39,7 +39,7 @@ def get_or_create(context, resource, defaults, **kwargs):
     params = {"where": ",".join(["%s:%s" % (k, v) for k, v in data.items()])}
     r = context.session.get(uri, timeout=HTTP_TIMEOUT, params=params)
     resource = subresource if subresource else resource
-    items = r.json()[resource]
+    items = r.json().get(resource)
     if items:
         return get(context, resource, id=items[0]["id"], **data), False
     data = dict(data, **defaults)
