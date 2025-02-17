@@ -77,6 +77,27 @@ def test_delete_tags(dci_context, component_id):
     assert r.status_code == 200
 
 
+def test_get_or_create_component_first(dci_context, topic_id):
+    nb_components = len(
+        api_topic.list_components(dci_context, topic_id).json()["components"]
+    )
+    r, created = api_component.get_or_create(
+        dci_context,
+        display_name="display_component1",
+        topic_id=topic_id,
+        data={"dir": "/tmp"},
+        type="component_type",
+        defaults={"version": "1.2.3"},
+    )
+    assert r.status_code == 200
+    assert created
+    component = r.json()["component"]
+    assert nb_components == 0
+    assert component["display_name"] == "display_component1"
+    assert component["version"] == "1.2.3"
+    assert component["data"]["dir"] == "/tmp"
+
+
 def test_get_or_create_component(dci_context, topic_id):
     nb_components = len(
         api_topic.list_components(dci_context, topic_id).json()["components"]
