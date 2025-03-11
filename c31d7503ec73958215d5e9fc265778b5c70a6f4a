@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9591c243_8d3be4f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 800
+      },
+      "writtenOn": "2025-03-11T10:35:11Z",
+      "side": 1,
+      "message": "Hi Rajesh, you cannot test example-cnf with TestDallasWorkload, that cluster is not prepared to hold example-cnf.",
+      "revId": "c31d7503ec73958215d5e9fc265778b5c70a6f4a",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    }
+  ]
+}
