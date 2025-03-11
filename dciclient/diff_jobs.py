@@ -38,7 +38,7 @@ def get_component_info(comp):
 
 def build_where_clause(job_info):
     where = []
-    for key in ("name", "remoteci_id", "topic_id", "configuration", "url"):
+    for key in ("name", "remoteci_id", "topic_id", "configuration"):
         if job_info[key]:
             where.append("%s:%s" % (key, job_info[key]))
         else:
