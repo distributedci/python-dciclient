@@ -16,6 +16,24 @@
       "message": "We should not remove url as this will find jobs from gerrit or github changes.",
       "revId": "4981f699412ff9c5bca719226b1604d5a9d20d5d",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea1bf05_699fabac",
+        "filename": "dciclient/diff_jobs.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1631
+      },
+      "writtenOn": "2025-03-13T08:21:36Z",
+      "side": 1,
+      "message": "Updated script with \"url\" key and new query language, replaced \"where\" by \"query\".",
+      "parentUuid": "5abb5f8e_27cd04a7",
+      "revId": "4981f699412ff9c5bca719226b1604d5a9d20d5d",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
