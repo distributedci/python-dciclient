@@ -1,0 +1,9 @@
+Verified+1: dci-ci-bot <dci-ci-bot@redhat.com>
+Code-Review+2: Frederic Lepied <flepied@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Workflow+1: Rajesh Chiluveru <rchiluve@redhat.com>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Thu, 13 Mar 2025 08:36:34 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/33107
+Project: python-dciclient
+Branch: refs/heads/master
