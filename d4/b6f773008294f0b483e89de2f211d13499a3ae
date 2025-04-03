@@ -1,0 +1,9 @@
+Code-Review+2: Frederic Lepied <flepied@redhat.com>
+Code-Review+2: Jorge Gallegos <jgallego@redhat.com>
+Workflow+1: Tony Garcia <tonyg@redhat.com>
+Verified+2: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-by: Zuul CI <zuul@softwarefactory-project.io>
+Submitted-at: Thu, 03 Apr 2025 19:34:07 +0000
+Reviewed-on: https://softwarefactory-project.io/r/c/python-dciclient/+/33495
+Project: python-dciclient
+Branch: refs/heads/master
