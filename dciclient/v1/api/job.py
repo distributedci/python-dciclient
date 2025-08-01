@@ -42,6 +42,12 @@ def list(context, **kwargs):
     return base.list(context, RESOURCE, **kwargs)
 
 
+def search(context, **kwargs):
+    uri = "%s/analytics/jobs" % context.dci_cs_api
+    r = context.session.post(uri, params=kwargs)
+    return r
+
+
 def schedule(context, topic_id, **kwargs):
     uri = "%s/%s/schedule" % (context.dci_cs_api, RESOURCE)
     data = {"topic_id": topic_id}

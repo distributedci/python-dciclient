@@ -59,6 +59,9 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 
 %changelog
+* Fri Aug 01 2025 Yassine Lamgarchal <ylamgarc@redhat.com> 4.0.2-1
+- add job-search to the cli
+
 * Tue Jul 16 2024 Guillaume Vincent <gvincent@redhat.com> 4.0.1-1
 - Drop python 2
 
