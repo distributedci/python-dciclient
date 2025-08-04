@@ -50,6 +50,40 @@
       "message": "recheck",
       "revId": "953f94597d287564e4230349ded7fe217d9cd3cc",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "558c66d0_1bfd5353",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2025-08-04T15:34:38Z",
+      "side": 1,
+      "message": "Could fix the commit message (missing job-search) and the README?",
+      "revId": "953f94597d287564e4230349ded7fe217d9cd3cc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf2393a_fc26d7e9",
+        "filename": "python-dciclient.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 20
+      },
+      "writtenOn": "2025-08-04T15:34:38Z",
+      "side": 1,
+      "message": "you didn\u0027t change the version only the changelog. It would be better to use 4.1 as this is a new feature.",
+      "revId": "953f94597d287564e4230349ded7fe217d9cd3cc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
