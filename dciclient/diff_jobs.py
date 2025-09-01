@@ -16,7 +16,6 @@
 
 from argparse import ArgumentParser
 import os
-import requests
 import sys
 
 from dciclient.v1.api import job as dci_job
