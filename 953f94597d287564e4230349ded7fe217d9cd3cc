@@ -84,6 +84,24 @@
       "message": "you didn\u0027t change the version only the changelog. It would be better to use 4.1 as this is a new feature.",
       "revId": "953f94597d287564e4230349ded7fe217d9cd3cc",
       "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "442d734d_3d4e04dd",
+        "filename": "python-dciclient.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 29
+      },
+      "writtenOn": "2025-09-09T22:36:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdf2393a_fc26d7e9",
+      "revId": "953f94597d287564e4230349ded7fe217d9cd3cc",
+      "serverId": "6c1dc8ef-8b94-40e4-bd83-c2359d45ecc0"
     }
   ]
 }
