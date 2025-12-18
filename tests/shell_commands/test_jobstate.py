@@ -22,8 +22,8 @@ def test_show(runner, jobstate_id):
     assert jobstate["id"] == jobstate_id
 
 
-@mock.patch("dci.api.v1.notifications.dispatcher")
-def disable_create(mock_dispatcher, runner, job_id):
+@mock.patch("dci.api.v1.notifications.job_dispatcher")
+def test_create(mock_dispatcher, runner, job_id):
     job = runner.invoke(
         [
             "jobstate-create",
@@ -36,8 +36,8 @@ def disable_create(mock_dispatcher, runner, job_id):
     assert job["status"] == "error"
 
 
-@mock.patch("dci.api.v1.notifications.dispatcher")
-def disable_create_with_comment(mock_dispatcher, runner, job_id):
+@mock.patch("dci.api.v1.notifications.job_dispatcher")
+def test_create_with_comment(mock_dispatcher, runner, job_id):
     job = runner.invoke(
         [
             "jobstate-create",
