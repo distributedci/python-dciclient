@@ -35,6 +35,7 @@ class DciContextBase(object):
     def __init__(self, dci_cs_url, max_retries=10, user_agent=None):
         self.session = self._build_http_session(user_agent, max_retries)
         self.dci_cs_api = "%s/%s" % (dci_cs_url, DciContext.API_VERSION)
+        self.dci_cs_api_v2 = "%s/%s" % (dci_cs_url, "api/v2")
         self.last_job_id = None
 
     @staticmethod
