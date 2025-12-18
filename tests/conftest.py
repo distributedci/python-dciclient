@@ -328,20 +328,24 @@ def topic(dci_context, topic_id):
 
 
 @pytest.fixture
-def remoteci_id(dci_context, team_user_id):
+def remoteci(dci_context, team_user_id):
     kwargs = {
         "name": "remoteci",
         "team_id": team_user_id,
         "data": {"remoteci": "remoteci"},
     }
     rci = api_remoteci.create(dci_context, **kwargs).json()
-    return rci["remoteci"]["id"]
+    return rci["remoteci"]
 
 
 @pytest.fixture
-def remoteci_api_secret(dci_context, remoteci_id):
-    rci = api_remoteci.get(dci_context, remoteci_id).json()
-    return rci["remoteci"]["api_secret"]
+def remoteci_id(remoteci):
+    return remoteci["id"]
+
+
+@pytest.fixture
+def remoteci_api_secret(remoteci):
+    return remoteci["api_secret"]
 
 
 @pytest.fixture
