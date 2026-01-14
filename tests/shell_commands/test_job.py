@@ -285,5 +285,8 @@ def test_job_search(mock_requests, runner_remoteci):
     mock_requests.get.return_value = res_mock
     res_mock.json.return_value = {"hits": "jobs"}
     res_mock.status_code = 200
-    jobs = runner_remoteci.invoke_raw(["job-search", "--query=(name='lol')"])
+    jobs = runner_remoteci.invoke_raw(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id"])
     assert jobs.json() == {"hits": "jobs"}
+    parsed_jobs = runner_remoteci.invoke_parse(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id"])
+    assert parsed_jobs.includes == ["name", "team"]
+    assert parsed_jobs.excludes == ["api_secret", "remoteci_id"]
