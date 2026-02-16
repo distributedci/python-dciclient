@@ -175,3 +175,9 @@ def provision(session):
     session.add(user_team)
 
     session.commit()
+
+
+def restore_db(engine):
+    models2.Base.metadata.reflect(engine)
+    models2.Base.metadata.drop_all(engine)
+    models2.Base.metadata.create_all(engine)

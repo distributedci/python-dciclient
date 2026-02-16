@@ -53,15 +53,9 @@ def engine(request):
 
     engine = sqlalchemy.create_engine(db_uri)
 
-    def del_db():
-        if sqlalchemy_utils.functions.database_exists(db_uri):
-            sqlalchemy_utils.functions.drop_database(db_uri)
-
-    del_db()
-    request.addfinalizer(del_db)
-    sqlalchemy_utils.functions.create_database(db_uri)
-
-    dci.db.models2.Base.metadata.create_all(engine)
+    if not sqlalchemy_utils.functions.database_exists(db_uri):
+        sqlalchemy_utils.functions.create_database(db_uri)
+    utils.restore_db(engine)
     return engine
 
 
