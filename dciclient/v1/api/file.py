@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 #
-# Copyright 2015-2016 Red Hat, Inc.
+# Copyright 2015-2026 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -55,7 +55,7 @@ def create(
         "DCI-JOBSTATE-ID": jobstate_id,
         "DCI-MD5": md5,
         "DCI-JOB-ID": job_id,
-        "Content-Type": mime
+        "Content-Type": mime,
     }
     headers = utils.sanitize_kwargs(**headers)
     uri = "%s/%s" % (context.dci_cs_api, RESOURCE)
