@@ -533,6 +533,8 @@ def parse_arguments(args, environment={}):
     p.add_argument("--limit", default=10)
     p.add_argument("--offset", default=0)
     p.add_argument("--query", help="Query language dsl", required=True)
+    _create_array_argument(p, "--includes", help="Comma separated list of fields to include.")
+    _create_array_argument(p, "--excludes", help="Comma separated list of fields to exclude.")
     p.set_defaults(command="job-search")
 
     p = subparsers.add_parser("job-show", help="Show a job.", parents=[base_parser])

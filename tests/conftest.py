@@ -229,6 +229,10 @@ def runner_factory(context):
         args = cli.parse_arguments(arguments, environment)
         return dci_runner.run(context, args)
 
+    def invoke_parse(arguments):
+        environment = {}
+        return cli.parse_arguments(arguments, environment)
+
     class Runner(object):
         pass
 
@@ -239,6 +243,7 @@ def runner_factory(context):
     runner.invoke_create_job = invoke_create_job
     runner.invoke_find_latest_component = invoke_find_latest_component
     runner.invoke_diff_jobs = invoke_diff_jobs
+    runner.invoke_parse = invoke_parse
     return runner
 
 
