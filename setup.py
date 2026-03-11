@@ -88,7 +88,5 @@ setuptools.setup(
             "dci-diff-jobs = dciclient.diff_jobs:main",
         ]
     },
-    cmdclass={
-        "sdist": sdist,
-    },
+    cmdclass={} if sdist is None else {"sdist": sdist},
 )
