@@ -15,6 +15,7 @@
 # under the License.
 
 from dciclient.v1.api import job
+from dciclient.v1 import exceptions
 
 import mock
 import pytest
@@ -290,3 +291,5 @@ def test_job_search(mock_requests, runner_remoteci):
     parsed_jobs = runner_remoteci.invoke_parse(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id"])
     assert parsed_jobs.includes == ["name", "team"]
     assert parsed_jobs.excludes == ["api_secret", "remoteci_id"]
+    with pytest.raises(exceptions.BadParameter):
+        parsed_jobs = runner_remoteci.invoke_raw(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id2", "--json-aggs='lol'"])
