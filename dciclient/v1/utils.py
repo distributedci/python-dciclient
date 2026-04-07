@@ -81,5 +81,5 @@ def get_es_search_params(args):
             json.loads(getattr(args, "json_aggs"))
         except json.JSONDecodeError:
             raise BadParameter("bad serialized json for json-aggs parameter")
-        filtered_params[k] = getattr(args, k)
+        filtered_params["json-aggs"] = getattr(args, "json_aggs")
     return filtered_params

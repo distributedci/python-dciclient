@@ -56,3 +56,23 @@ def test_get_search_params():
         "limit": 100,
         "offset": 0,
     }
+
+
+def test_get_es_search_params():
+    assert utils.get_es_search_params(
+        Namespace(
+            **{
+                "sort": "-created_at",
+                "limit": 1,
+                "offset": 0,
+                "query": "(name='job-name')",
+                "json_aggs": '{"aggs": {"aggs_teams": {"terms": {"field": "team_id"}}}}'
+            }
+        )
+    ) == {
+        "sort": "-created_at",
+        "limit": 1,
+        "offset": 0,
+        "query": "(name='job-name')",
+        "json-aggs": '{"aggs": {"aggs_teams": {"terms": {"field": "team_id"}}}}'
+    }
