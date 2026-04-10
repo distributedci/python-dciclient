@@ -11,6 +11,7 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations
 # under the License.
+import logging
 import os
 import os.path
 
@@ -27,6 +28,9 @@ from urllib3.util.retry import Retry
 
 from dciauth.v2.headers import generate_headers
 from dciclient import version
+from dciclient.v1.api.token_storage import TokenStorage
+
+logger = logging.getLogger(__name__)
 
 
 class DciContextBase(object):
@@ -58,12 +62,37 @@ class DciContextBase(object):
 
 
 class DciContext(DciContextBase):
+    """
+    DEPRECATED: This class now uses JWT authentication instead of Basic auth.
+    Consider using JWTContext directly via build_jwt_context() or login via dcictl login.
+    """
     def __init__(self, dci_cs_url, login, password, max_retries=10, user_agent=None):
+        logger.warning(
+            "DciContext is deprecated and now uses JWT authentication instead of Basic auth. "
+            "Consider using 'dcictl login' and JWTContext, or use build_jwt_context()."
+        )
         super(DciContext, self).__init__(
             dci_cs_url.rstrip("/"), max_retries, user_agent
         )
         self.login = login
-        self.session.auth = (login, password)
+
+        # Login via JWT endpoint to get tokens
+        login_url = "%s/%s/auth/login" % (dci_cs_url.rstrip("/"), DciContext.API_VERSION)
+        response = requests.post(
+            login_url,
+            json={"email": login, "password": password},
+            headers={"Content-Type": "application/json"},
+        )
+        response.raise_for_status()
+
+        tokens = response.json()
+
+        # Create in-memory token storage (token_file=False means in-memory only)
+        token_storage = TokenStorage(token_file=False)
+        token_storage.save_tokens(tokens["access_token"], tokens["refresh_token"])
+
+        # Use JWT authentication
+        self.session.auth = JWTBearerAuth(dci_cs_url.rstrip("/"), token_storage)
 
 
 def build_dci_context(
@@ -165,12 +194,137 @@ def build_signature_context(
     )
 
 
+class JWTBearerAuth(AuthBase):
+    """JWT Bearer authentication for DCI API with automatic token refresh"""
+
+    def __init__(self, dci_cs_url, token_storage):
+        self.dci_cs_url = dci_cs_url
+        self.token_storage = token_storage
+
+    def _refresh_access_token(self):
+        """Refresh the access token using the refresh token"""
+        refresh_token = self.token_storage.get_refresh_token()
+        if not refresh_token:
+            raise Exception("No valid refresh token available. Please login again.")
+
+        url = "%s/%s/auth/refresh" % (self.dci_cs_url, DciContext.API_VERSION)
+        headers = {
+            "Authorization": "JWTBearer %s" % refresh_token,
+            "Content-Type": "application/json",
+        }
+
+        try:
+            response = requests.post(url, headers=headers)
+            response.raise_for_status()
+            tokens = response.json()
+
+            # Save new tokens
+            self.token_storage.save_tokens(
+                tokens["access_token"],
+                tokens["refresh_token"]
+            )
+
+            return tokens["access_token"]
+        except requests.exceptions.RequestException as e:
+            raise Exception("Failed to refresh token: %s" % str(e))
+
+    def __call__(self, r):
+        # Check if access token is expired and refresh if needed
+        access_token = self.token_storage.get_valid_access_token()
+
+        if not access_token:
+            # Try to refresh
+            access_token = self._refresh_access_token()
+
+        if not access_token:
+            raise Exception("No valid access token available. Please login again.")
+
+        r.headers["Authorization"] = "JWTBearer %s" % access_token
+        return r
+
+
+class JWTContext(DciContextBase):
+    """DCI Context using JWT Bearer authentication with automatic token refresh"""
+
+    def __init__(self, dci_cs_url, token_storage=None, max_retries=10, user_agent=None):
+        super(JWTContext, self).__init__(
+            dci_cs_url.rstrip("/"), max_retries, user_agent
+        )
+        if token_storage is None:
+            token_storage = TokenStorage()
+        self.token_storage = token_storage
+        self.session.auth = JWTBearerAuth(dci_cs_url.rstrip("/"), token_storage)
+
+    def login(self, email, password):
+        """
+        Login with credentials and store JWT tokens.
+
+        Args:
+            email: User email address
+            password: User password
+
+        Raises:
+            requests.exceptions.HTTPError: If login fails
+        """
+        login_url = "%s/auth/login" % self.dci_cs_api
+
+        # Temporarily remove auth to avoid trying to use non-existent tokens
+        old_auth = self.session.auth
+        self.session.auth = None
+
+        try:
+            response = self.session.post(
+                login_url,
+                json={"email": email, "password": password},
+                headers={"Content-Type": "application/json"},
+            )
+            response.raise_for_status()
+
+            tokens = response.json()
+            self.token_storage.save_tokens(tokens["access_token"], tokens["refresh_token"])
+        finally:
+            # Restore auth
+            self.session.auth = old_auth
+
+
 class SsoContext(DciContextBase):
     def __init__(self, dci_cs_url, token, max_retries=10, user_agent=None):
         super(SsoContext, self).__init__(
             dci_cs_url.rstrip("/"), max_retries, user_agent
         )
         self.session.headers["Authorization"] = "Bearer %s" % token
+
+
+def build_jwt_context(dci_cs_url=None, token_storage=None, max_retries=10, user_agent=None):
+    """
+    Build a JWT context using stored tokens.
+
+    Args:
+        dci_cs_url: DCI Control Server URL
+        token_storage: TokenStorage instance (optional)
+        max_retries: Maximum number of retries
+        user_agent: Custom user agent string
+
+    Returns:
+        JWTContext: Context configured with JWT authentication
+
+    Raises:
+        Exception: If no tokens are available
+    """
+    dci_cs_url = dci_cs_url or os.environ.get("DCI_CS_URL", "")
+    if not dci_cs_url:
+        raise Exception("DCI_CS_URL is required")
+
+    if token_storage is None:
+        token_storage = TokenStorage()
+
+    # Check if tokens exist
+    if not token_storage.load_tokens():
+        raise Exception(
+            "No JWT tokens found. Please run 'dcictl login' first."
+        )
+
+    return JWTContext(dci_cs_url, token_storage, max_retries, user_agent)
 
 
 def build_sso_context(
