@@ -284,7 +284,7 @@ def test_csv():
             "t1"
         ]
     )
-    assert args.tags == []
+    assert args.tags is None
 
 
 def test_parse_download_authfile():

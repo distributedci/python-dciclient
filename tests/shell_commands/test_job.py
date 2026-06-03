@@ -128,6 +128,34 @@ def test_update(runner, job_id):
     assert l_job["job"]["status_reason"] == "new-status-reason"
 
 
+def test_update_preserves_tags(runner, job_id):
+    """Test that updating a job without specifying --tags preserves existing tags.
+
+    Regression test: previously, _create_array_argument used default=[]
+    which caused unspecified array fields to be sent as empty lists,
+    wiping existing tags on job-update.
+    """
+    # Set tags on the job
+    result = runner.invoke_raw(
+        ["job-update", job_id, "--tags", "tag1,tag2,tag3"]
+    )
+    assert result.status_code == 200
+
+    l_job = runner.invoke(["job-show", job_id])
+    assert sorted(l_job["job"]["tags"]) == ["tag1", "tag2", "tag3"]
+
+    # Update only status_reason, without specifying --tags
+    result = runner.invoke_raw(
+        ["job-update", job_id, "--status_reason", "some-reason"]
+    )
+    assert result.status_code == 200
+
+    # Tags must still be present
+    l_job = runner.invoke(["job-show", job_id])
+    assert l_job["job"]["status_reason"] == "some-reason"
+    assert sorted(l_job["job"]["tags"]) == ["tag1", "tag2", "tag3"]
+
+
 def test_results(runner, job_id):
     result = runner.invoke(["job-results", job_id])["results"][0]
 

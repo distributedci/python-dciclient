@@ -35,7 +35,7 @@ def _create_array_argument(parser, argument_name, help):
         argument_name,
         type=lambda x: [v.strip() for v in x.split(",")],
         help=help,
-        default=[],
+        default=None,
     )
 
 
