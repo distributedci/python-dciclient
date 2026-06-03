@@ -263,6 +263,46 @@ def test_update(runner, product_id):
     assert result["tags"][1] == "tag"
 
 
+def test_update_preserves_data(runner, product_id):
+    """Test that updating a component without specifying --data preserves existing data.
+
+    Regression test: previously, --data used default="{}"
+    which caused unspecified data fields to be sent as empty dicts,
+    wiping existing data on component-update.
+    """
+    topic = runner.invoke(
+        ["topic-create", "--name", "osp", "--product-id", product_id]
+    )["topic"]
+
+    component = runner.invoke(
+        [
+            "component-create",
+            "foo",
+            "--type",
+            "bar",
+            "--topic-id",
+            topic["id"],
+            "--data",
+            '{"key1": "value1", "key2": "value2"}',
+        ]
+    )["component"]
+
+    assert component["data"] == {"key1": "value1", "key2": "value2"}
+
+    # Update only the display name, without specifying --data
+    result = runner.invoke(
+        [
+            "component-update",
+            component["id"],
+            "--display-name",
+            "new-foo",
+        ]
+    )["component"]
+
+    assert result["display_name"] == "new-foo"
+    assert result["data"] == {"key1": "value1", "key2": "value2"}
+
+
 def test_update_with_data(runner, product_id):
     topic = runner.invoke(
         ["topic-create", "--name", "osp", "--product-id", product_id]

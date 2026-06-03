@@ -135,6 +135,44 @@ def test_show(runner):
     assert remoteci["name"] == "foo"
 
 
+def test_update_preserves_data(runner):
+    """Test that updating a remoteci without specifying --data preserves existing data.
+
+    Regression test: previously, --data used default="{}"
+    which caused unspecified data fields to be sent as empty dicts,
+    wiping existing data on remoteci-update.
+    """
+    team = runner.invoke(["team-create", "--name", "foo"])["team"]
+    remoteci = runner.invoke(
+        [
+            "remoteci-create",
+            "--name",
+            "foo",
+            "--team-id",
+            team["id"],
+            "--data",
+            '{"key1": "value1", "key2": "value2"}',
+        ]
+    )["remoteci"]
+
+    assert remoteci["data"] == {"key1": "value1", "key2": "value2"}
+
+    # Update only the name, without specifying --data
+    result = runner.invoke(
+        [
+            "remoteci-update",
+            remoteci["id"],
+            "--etag",
+            remoteci["etag"],
+            "--name",
+            "bar",
+        ]
+    )["remoteci"]
+
+    assert result["name"] == "bar"
+    assert result["data"] == {"key1": "value1", "key2": "value2"}
+
+
 def test_get_data(runner):
     team = runner.invoke(["team-create", "--name", "foo"])["team"]
     remoteci = runner.invoke(
