@@ -412,7 +412,7 @@ def parse_arguments(args, environment={}):
     p.add_argument("--type", required=False, help="Type of component")
     _create_array_argument(p, "--tags", help="Comma separated list of tags")
     p.add_argument("--url", help="URL to look for the component")
-    p.add_argument("--data", default="{}", help="Data to pass (JSON)")
+    p.add_argument("--data", default=None, help="Data to pass (JSON)")
     p.add_argument("--version", required=False, help="Version of the component")
     p.set_defaults(command="component-update")
 
@@ -650,7 +650,7 @@ def parse_arguments(args, environment={}):
     p.add_argument("--etag", required=True)
     p.add_argument("--name")
     p.add_argument("--team-id")
-    p.add_argument("--data", default="{}")
+    p.add_argument("--data", default=None)
     _create_boolean_flags(p, "--active/--no-active", default=None, dest="state")
     p.set_defaults(command="remoteci-update")
 
