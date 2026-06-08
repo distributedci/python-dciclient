@@ -434,6 +434,20 @@ def test_create_component(runner, topic, team_user_name, team_user_id):
     assert component["team_id"] == team_user_id
 
 
+def test_create_component_without_tags(runner, topic, team_user_name):
+    component = runner.invoke_create_component(
+        [
+            "--team",
+            team_user_name,
+            topic,
+            "My Product",
+            "v1.0",
+            "ga",
+        ]
+    )["component"]
+    assert component["tags"] == ["build:ga"]
+
+
 def test_find_latest_component(runner, product, component):
     comp = runner.invoke_find_latest_component(
         ["--tags", ",".join(component["tags"]), product["name"], component["type"]]

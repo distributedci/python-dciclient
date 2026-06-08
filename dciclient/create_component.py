@@ -137,7 +137,7 @@ def run(context, args):
     args.state = True
     names = args.name.split(" ")
     args.type = "-".join([name.lower() for name in names])
-    args.tags += ["build:" + args.release_tag]
+    args.tags = (args.tags or []) + ["build:" + args.release_tag]
     capitalized_name = " ".join([name.capitalize() for name in names])
     args.display_name = "%s %s" % (capitalized_name, args.version)
     args.command = "component-create"
