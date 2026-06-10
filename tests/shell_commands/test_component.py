@@ -454,3 +454,11 @@ def test_find_latest_component(runner, product, component):
     )
     assert comp["id"] == component["id"]
     assert comp["type"] == component["type"]
+
+
+def test_find_latest_component_without_tags(runner, product, component):
+    comp = runner.invoke_find_latest_component(
+        [product["name"], component["type"]]
+    )
+    assert comp["id"] == component["id"]
+    assert comp["type"] == component["type"]
