@@ -148,8 +148,9 @@ def lookup_latest_component(context, args):
     a = copy.deepcopy(args)
 
     # Set defaults
-    a.where = "type:" + a.type + ((",tags:" + ",tags:".join(a.tags))
-                                  if len(a.tags) != 0 else "")
+    tags = a.tags or []
+    a.where = "type:" + a.type + ((",tags:" + ",tags:".join(tags))
+                                  if len(tags) != 0 else "")
     a.sort = "-released_at"
     a.limit = 1
     a.offset = 0
