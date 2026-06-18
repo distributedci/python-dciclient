@@ -167,13 +167,13 @@ def test_job_output(runner, job_id):
     assert result[0].startswith("pre-run")
 
 
-def test_file_support(runner, tmpdir, job_id):
+def test_file_support(runner_user, tmpdir, job_id):
     td = tmpdir
     p = td.join("hello.txt")
     p.write("content")
 
     # upload
-    new_f = runner.invoke(
+    new_f = runner_user.invoke(
         [
             "job-upload-file",
             job_id,
@@ -188,12 +188,12 @@ def test_file_support(runner, tmpdir, job_id):
     assert new_f["size"] == 7
 
     # show
-    new_f = runner.invoke(["file-show", new_f["id"]])["file"]
+    new_f = runner_user.invoke(["file-show", new_f["id"]])["file"]
     assert new_f["size"] == 7
     assert new_f["mime"] == "application/octet-stream"
 
     # download
-    runner.invoke_raw(
+    runner_user.invoke_raw(
         [
             "job-download-file",
             job_id,
@@ -206,13 +206,13 @@ def test_file_support(runner, tmpdir, job_id):
     assert open(td.strpath + "/my_file", "r").read() == "content"
 
     # list
-    my_list = runner.invoke(["job-list-file", job_id])["files"]
+    my_list = runner_user.invoke(["job-list-file", job_id])["files"]
     assert len(my_list) == 3
     assert my_list[0]["size"] == 7
 
     # delete
-    runner.invoke_raw(["file-delete", new_f["id"]])
-    result = runner.invoke_raw(["file-show", new_f["id"]])
+    runner_user.invoke_raw(["file-delete", new_f["id"]])
+    result = runner_user.invoke_raw(["file-show", new_f["id"]])
     assert result.status_code == 404
 
 
