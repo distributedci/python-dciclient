@@ -21,11 +21,11 @@ from dciclient.v1.api import file as dci_file
 from dciclient.v1.api import job
 
 
-def test_iter(dci_context, job_id):
+def test_iter(dci_context_user, job_id):
     f_names = ["file_%d" % i for i in range(100)]
     for name in f_names:
         dci_file.create(
-            dci_context,
+            dci_context_user,
             name=name,
             content="some content",
             mime="plain/text",
@@ -33,14 +33,13 @@ def test_iter(dci_context, job_id):
         )
     cpt = 0
     seen_names = []
-    for f in job.list_files_iter(dci_context, id=job_id, limit=200, offset=0):
+    for f in job.list_files_iter(dci_context_user, id=job_id, limit=200, offset=0):
         seen_names.append(f["name"])
         cpt += 1
     # job already comes with 2 files
-    all_files = len(job.list_files(dci_context,
-                                   id=job_id,
-                                   limit=200,
-                                   offset=0).json()["files"])
+    all_files = len(
+        job.list_files(dci_context_user, id=job_id, limit=200, offset=0).json()["files"]
+    )
     assert all_files == 100 + 2
     assert cpt == 100 + 2
     assert len(set(seen_names) - set(f_names)) == 2
