@@ -136,18 +136,14 @@ def test_update_preserves_tags(runner, job_id):
     wiping existing tags on job-update.
     """
     # Set tags on the job
-    result = runner.invoke_raw(
-        ["job-update", job_id, "--tags", "tag1,tag2,tag3"]
-    )
+    result = runner.invoke_raw(["job-update", job_id, "--tags", "tag1,tag2,tag3"])
     assert result.status_code == 200
 
     l_job = runner.invoke(["job-show", job_id])
     assert sorted(l_job["job"]["tags"]) == ["tag1", "tag2", "tag3"]
 
     # Update only status_reason, without specifying --tags
-    result = runner.invoke_raw(
-        ["job-update", job_id, "--status_reason", "some-reason"]
-    )
+    result = runner.invoke_raw(["job-update", job_id, "--status_reason", "some-reason"])
     assert result.status_code == 200
 
     # Tags must still be present
@@ -219,7 +215,7 @@ def test_file_support(runner_user, tmpdir, job_id):
 def test_file_support_as_remoteci(runner_remoteci, tmpdir, job_id):
     td = tmpdir
     p = td.join("remoteci.txt")
-    content = u"remoteci content".encode("utf-8")
+    content = "remoteci content".encode("utf-8")
     p.write(content, "wb")
 
     my_original_list = runner_remoteci.invoke(["job-list-file", job_id])["files"]
@@ -282,17 +278,28 @@ def test_create_job(runner_remoteci, topic, topic_id, job_id, component, remotec
     url = "https://company.com/ci/job/42"
     job = runner_remoteci.invoke_create_job(
         [
-            "--url", url,
-            "--tag", "tag1",
-            "--tag", "tag2",
-            "--topic", topic,
-            "--name", "my-job",
-            "--comment", "comment",
-            "--comp", component["name"],
-            "--remoteci", "remoteci",
-            "--key-value", "key=42",
-            "--data", '{"jenkins_url": "https://jenkins.corp.com/job/name/42"}',
-            "--previous-job-id", job_id,
+            "--url",
+            url,
+            "--tag",
+            "tag1",
+            "--tag",
+            "tag2",
+            "--topic",
+            topic,
+            "--name",
+            "my-job",
+            "--comment",
+            "comment",
+            "--comp",
+            component["name"],
+            "--remoteci",
+            "remoteci",
+            "--key-value",
+            "key=42",
+            "--data",
+            '{"jenkins_url": "https://jenkins.corp.com/job/name/42"}',
+            "--previous-job-id",
+            job_id,
         ]
     )["job"]
     assert job["tags"] == ["tag1", "tag2"]
@@ -314,10 +321,32 @@ def test_job_search(mock_requests, runner_remoteci):
     mock_requests.get.return_value = res_mock
     res_mock.json.return_value = {"hits": "jobs"}
     res_mock.status_code = 200
-    jobs = runner_remoteci.invoke_raw(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id"])
+    jobs = runner_remoteci.invoke_raw(
+        [
+            "job-search",
+            "--query=(name='lol')",
+            "--includes=name,team",
+            "--excludes=api_secret,remoteci_id",
+        ]
+    )
     assert jobs.json() == {"hits": "jobs"}
-    parsed_jobs = runner_remoteci.invoke_parse(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id"])
+    parsed_jobs = runner_remoteci.invoke_parse(
+        [
+            "job-search",
+            "--query=(name='lol')",
+            "--includes=name,team",
+            "--excludes=api_secret,remoteci_id",
+        ]
+    )
     assert parsed_jobs.includes == ["name", "team"]
     assert parsed_jobs.excludes == ["api_secret", "remoteci_id"]
     with pytest.raises(exceptions.BadParameter):
-        parsed_jobs = runner_remoteci.invoke_raw(["job-search", "--query=(name='lol')", "--includes=name,team", "--excludes=api_secret,remoteci_id2", "--json-aggs='lol'"])
+        parsed_jobs = runner_remoteci.invoke_raw(
+            [
+                "job-search",
+                "--query=(name='lol')",
+                "--includes=name,team",
+                "--excludes=api_secret,remoteci_id2",
+                "--json-aggs='lol'",
+            ]
+        )
