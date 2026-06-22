@@ -17,30 +17,38 @@
 from dciclient.v1.api import job
 
 
-def test_create_and_show_pipeline(runner, team_user_id):
-    p = runner.invoke(
-        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id])
-    assert p["pipeline"]["name"] == "my-pipeline"
-
-    p = runner.invoke(
-        ["pipeline-show", p["pipeline"]["id"]]
+def test_create_and_show_pipeline(runner_user, team_user_id):
+    p = runner_user.invoke(
+        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id]
     )
     assert p["pipeline"]["name"] == "my-pipeline"
 
+    p = runner_user.invoke(["pipeline-show", p["pipeline"]["id"]])
+    assert p["pipeline"]["name"] == "my-pipeline"
 
-def test_list_pipeline(runner, team_user_id):
+
+def test_list_pipeline(runner_user, team_user_id):
     for i in range(3):
-        p = runner.invoke(
-            ["pipeline-create", "--name", "my-pipeline-%s" % i, "--team-id",
-             team_user_id])
+        p = runner_user.invoke(
+            [
+                "pipeline-create",
+                "--name",
+                "my-pipeline-%s" % i,
+                "--team-id",
+                team_user_id,
+            ]
+        )
         assert p["pipeline"]["name"] == "my-pipeline-%s" % i
-    ps = runner.invoke(["pipeline-list"])
+    ps = runner_user.invoke(["pipeline-list"])
     assert len(ps["pipelines"]) == 3
 
 
-def test_list_jobs_pipeline(runner, team_user_id, product_id, dci_context_remoteci):
-    p = runner.invoke(
-        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id])
+def test_list_jobs_pipeline(
+    runner, runner_user, team_user_id, product_id, dci_context_remoteci
+):
+    p = runner_user.invoke(
+        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id]
+    )
     assert p["pipeline"]["name"] == "my-pipeline"
 
     topic = runner.invoke(
@@ -67,37 +75,42 @@ def test_list_jobs_pipeline(runner, team_user_id, product_id, dci_context_remote
         ]
     )["component"]
 
-    jobs = runner.invoke(["pipeline-show-jobs", p["pipeline"]["id"]])
+    jobs = runner_user.invoke(["pipeline-show-jobs", p["pipeline"]["id"]])
     assert len(jobs["jobs"]) == 0
 
     job.schedule(dci_context_remoteci, topic["id"], pipeline_id=p["pipeline"]["id"])
 
-    jobs = runner.invoke(["pipeline-show-jobs", p["pipeline"]["id"]])
+    jobs = runner_user.invoke(["pipeline-show-jobs", p["pipeline"]["id"]])
     assert len(jobs["jobs"]) == 1
 
 
-def test_update_pipeline(runner, team_user_id):
-    p = runner.invoke(
-        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id])
-    runner.invoke(
-        ["pipeline-update",
-         p["pipeline"]["id"],
-         "--etag", p["pipeline"]["etag"],
-         "--name", "new-pipeline"])
-    p = runner.invoke(
-        ["pipeline-show", p["pipeline"]["id"]]
+def test_update_pipeline(runner_user, team_user_id):
+    p = runner_user.invoke(
+        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id]
     )
+    runner_user.invoke(
+        [
+            "pipeline-update",
+            p["pipeline"]["id"],
+            "--etag",
+            p["pipeline"]["etag"],
+            "--name",
+            "new-pipeline",
+        ]
+    )
+    p = runner_user.invoke(["pipeline-show", p["pipeline"]["id"]])
 
     assert p["pipeline"]["name"] == "new-pipeline"
 
 
-def test_delete_pipeline(runner, team_user_id):
-    p = runner.invoke(
-        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id])
+def test_delete_pipeline(runner_user, team_user_id):
+    p = runner_user.invoke(
+        ["pipeline-create", "--name", "my-pipeline", "--team-id", team_user_id]
+    )
     assert p["pipeline"]["name"] == "my-pipeline"
-    dp = runner.invoke_raw(
+    dp = runner_user.invoke_raw(
         ["pipeline-delete", p["pipeline"]["id"], "--etag", p["pipeline"]["etag"]]
     )
     assert dp.status_code == 204
-    ps = runner.invoke(["pipeline-list"])
+    ps = runner_user.invoke(["pipeline-list"])
     assert len(ps["pipelines"]) == 0
