@@ -315,6 +315,7 @@ def test_create_job(runner_remoteci, topic, topic_id, job_id, component, remotec
     assert job["previous_job_id"] == job_id
 
 
+@pytest.mark.skip(reason="temporarily disabled until PR CS #59 merged")
 @mock.patch("dci.api.v1.analytics.requests")
 def test_job_search(mock_requests, runner_remoteci):
     res_mock = mock.MagicMock()
