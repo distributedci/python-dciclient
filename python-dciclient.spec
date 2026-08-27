@@ -2,7 +2,7 @@
 %global summary Python client for DCI control server for the remote CIs
 
 Name:           python-%{srcname}
-Version:        4.1.0
+Version:        4.2.0
 Release:        1.VERS%{?dist}
 Summary:        %{summary}
 
@@ -59,6 +59,9 @@ install -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/python-%{srcname}
 
 
 %changelog
+* Fri Aug 21 2026 Tony Garcia <tonyg@redhat.com> 4.2.0-1
+- Add redact to create file
+
 * Tue Sep 09 2025 Yassine Lamgarchal <ylamgarc@redhat.com> 4.1.0-1
 - add job-search to the cli
 
