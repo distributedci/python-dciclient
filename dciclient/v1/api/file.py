@@ -117,6 +117,49 @@ def content(context, id):
     return r
 
 
+def update_content(
+    context,
+    id,
+    etag,
+    content=None,
+    file_path=None,
+    mime="application/junit",
+):
+    """Replace the content of an application/junit file.
+
+    The control server only accepts updates that change testcase properties.
+    The new content can be specified either directly or through file_path.
+    etag is the current file etag and is sent as If-match.
+
+    content can be in the form of: string, bytes or a file-descriptor.
+
+    """
+
+    if content is not None and file_path:
+        raise Exception("content and file_path are mutually exclusive")
+    elif content is None and not file_path:
+        raise Exception("At least one of content or file_path must be specified")
+
+    headers = {"Content-Type": mime, "If-match": etag}
+    uri = "%s/%s/%s/content" % (context.dci_cs_api, RESOURCE, id)
+
+    if content is not None:
+        if not hasattr(content, "read"):
+            if not isinstance(content, bytes):
+                content = content.encode("utf-8")
+            content = io.BytesIO(content)
+        return context.session.put(
+            uri, timeout=base.HTTP_TIMEOUT, headers=headers, data=content
+        )
+
+    if not os.path.exists(file_path):
+        raise FileErrorException()
+    with open(file_path, "rb") as f:
+        return context.session.put(
+            uri, timeout=base.HTTP_TIMEOUT, headers=headers, data=f
+        )
+
+
 def download(context, id, file_id, target):
     uri = "%s/files/%s/content" % (context.dci_cs_api, file_id)
     base.download(context, uri, target)
