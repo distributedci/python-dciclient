@@ -144,3 +144,61 @@ def test_nrt_file_upload_empty_content_string(
     f = dci_file.get(dci_context, r.json()["file"]["id"]).json()["file"]
     assert f["name"] == "empty_string.txt"
     assert f["size"] == 0
+
+
+JUNIT = """<testsuite errors="0" failures="0" name="pytest" skipped="0" tests="1" time="1.0">
+    <testcase classname="tests.test_app" name="test_cors" time="1.0"/>
+</testsuite>
+"""
+
+JUNIT_WITH_TESTCASE_PROPERTIES = """<testsuite errors="0" failures="0" name="pytest" skipped="0" tests="1" time="1.0">
+    <testcase classname="tests.test_app" name="test_cors" time="1.0">
+        <properties>
+            <property name="bug" value="123"></property>
+        </properties>
+    </testcase>
+</testsuite>
+"""
+
+JUNIT_STRUCTURAL_CHANGE = """<testsuite errors="0" failures="0" name="other" skipped="0" tests="1" time="1.0">
+    <testcase classname="tests.test_app" name="test_other" time="1.0"/>
+</testsuite>
+"""
+
+
+def test_update_junit_content(
+    remoteci_id, remoteci_api_secret, signature_context_factory, job_id
+):
+    dci_context = signature_context_factory(
+        client_id=remoteci_id, api_secret=remoteci_api_secret
+    )
+    created = dci_file.create(
+        dci_context,
+        name="junit_file.xml",
+        content=JUNIT,
+        mime="application/junit",
+        job_id=job_id,
+    )
+    assert created.status_code == 201
+    file_id = created.json()["file"]["id"]
+    file_etag = created.json()["file"]["etag"]
+
+    updated = dci_file.update_content(
+        dci_context,
+        file_id,
+        file_etag,
+        content=JUNIT_WITH_TESTCASE_PROPERTIES,
+    )
+    assert updated.status_code == 204
+    stored = dci_file.content(dci_context, file_id)
+    assert stored.content == JUNIT_WITH_TESTCASE_PROPERTIES.encode("utf-8")
+
+    rejected = dci_file.update_content(
+        dci_context,
+        file_id,
+        updated.headers["ETag"],
+        content=JUNIT_STRUCTURAL_CHANGE,
+    )
+    assert rejected.status_code == 400
+    stored = dci_file.content(dci_context, file_id)
+    assert stored.content == JUNIT_WITH_TESTCASE_PROPERTIES.encode("utf-8")
