@@ -127,6 +127,18 @@ def provision(session):
     user.team.append(user_team)
     session.add(user)
 
+    # Create unauthorized_user
+    unauthorized_user_team = models2.Team(name="unauthorized_user")
+    unauthorized_user = models2.User(
+        name="unauthorized_user",
+        sso_username="unauthorized_user",
+        password=auth.hash_password("unauthorized_user"),
+        fullname="Unauthorized User",
+        email="unauthorized_user@example.org",
+    )
+    unauthorized_user.team.append(unauthorized_user_team)
+    session.add(unauthorized_user)
+
     # Create user no team
     user_no_team = models2.User(
         name="user_no_team",

@@ -59,8 +59,8 @@ def test_list(runner):
     assert products_new_number == products_number + 2
 
 
-def test_fail_create_unauthorized_user_admin(runner_user_admin):
-    product = runner_user_admin.invoke_raw(["product-create", "--name", "foo"])
+def test_fail_create_unauthorized_user(runner_unauthorized_user):
+    product = runner_unauthorized_user.invoke_raw(["product-create", "--name", "foo"])
     assert product.status_code == 401
 
 

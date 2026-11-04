@@ -57,8 +57,8 @@ def test_create_has_pre_release_access(runner):
     assert baz["has_pre_release_access"] is False
 
 
-def test_create_fail_unauthorized_user_admin(runner_user_admin):
-    team = runner_user_admin.invoke_raw(["team-create", "--name", "foo"])
+def test_create_fail_unauthorized_user(runner_unauthorized_user):
+    team = runner_unauthorized_user.invoke_raw(["team-create", "--name", "foo"])
     assert team.status_code == 401
 
 

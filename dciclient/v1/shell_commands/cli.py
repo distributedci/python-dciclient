@@ -63,6 +63,18 @@ def parse_arguments(args, environment={}):
     dci_context.parse_auth_arguments(parser, environment)
 
     subparsers = parser.add_subparsers()
+
+    # auth commands
+    p = subparsers.add_parser(
+        "login", help="Login and store JWT tokens.", parents=[base_parser]
+    )
+    p.set_defaults(command="login")
+
+    p = subparsers.add_parser(
+        "logout", help="Remove stored JWT tokens.", parents=[base_parser]
+    )
+    p.set_defaults(command="logout")
+
     # user commands
     p = subparsers.add_parser(
         "user-list", help="List all users.", parents=[base_parser]

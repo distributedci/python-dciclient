@@ -15,7 +15,9 @@
 
 from dciclient.v1.api.context import (build_dci_context,
                                       build_signature_context,
-                                      build_sso_context)
+                                      build_sso_context,
+                                      build_jwt_context)
+from dciclient.v1.api.token_storage import TokenStorage
 
 
 _default_dci_cs_url = "http://127.0.0.1:5000"
@@ -89,6 +91,20 @@ def parse_auth_arguments(parser, environment={}):
 
 
 def build_context(args):
+    # First, try to use stored JWT tokens
+    token_storage = TokenStorage()
+    if token_storage.load_tokens():
+        try:
+            context = build_jwt_context(
+                dci_cs_url=args.dci_cs_url,
+                token_storage=token_storage,
+            )
+            return context
+        except Exception:
+            # JWT tokens exist but are invalid/expired, fall through to other methods
+            pass
+
+    # Fall back to other authentication methods
     if args.sso_token or (args.sso_url and args.sso_username and args.sso_password):
         context = build_sso_context(
             dci_cs_url=args.dci_cs_url,

@@ -31,8 +31,8 @@ def test_purge_fail_unauthorized_user(runner_user):
     assert result.status_code == 401
 
 
-def test_purge_fail_unauthorized_user_admin(runner_user_admin):
-    result = runner_user_admin.invoke_raw(["purge"])
+def test_purge_fail_unauthorized_user(runner_unauthorized_user):
+    result = runner_unauthorized_user.invoke_raw(["purge"])
     assert result.status_code == 401
 
 

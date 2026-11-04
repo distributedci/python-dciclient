@@ -29,10 +29,10 @@ def test_success_create_product_authorized(dci_context):
     assert "OpenStack" in [prod["name"] for prod in products_test["products"]]
 
 
-def test_failure_create_product_unauthorized(dci_context_user_admin):
+def test_failure_create_product_unauthorized(dci_context_unauthorized_user):
     """Fail to create a product with an unauthorized identity."""
 
-    result = product.create(dci_context_user_admin, "OpenStack")
+    result = product.create(dci_context_unauthorized_user, "OpenStack")
 
     assert result.status_code == 401
 
@@ -73,7 +73,7 @@ def test_success_update_product_authorized(dci_context, product_id):
 
 
 def test_failure_update_product_unauthorized(
-    dci_context, dci_context_user_admin, product_id
+    dci_context, dci_context_unauthorized_user, product_id
 ):
     """Fail to update a product with an unauthorized identity."""
 
@@ -82,7 +82,7 @@ def test_failure_update_product_unauthorized(
 
     updated_params = {"description": "This is a new description"}
     result = product.update(
-        dci_context_user_admin, product_id, etag=product_etag, **updated_params
+        dci_context_unauthorized_user, product_id, etag=product_etag, **updated_params
     )
 
     assert result.status_code == 401
@@ -104,13 +104,13 @@ def test_success_delete_product_authorized(dci_context, product_id):
 
 
 def test_failure_delete_product_unauthorized(
-    dci_context, dci_context_user_admin, product_id
+    dci_context, dci_context_unauthorized_user, product_id
 ):
     """Fail to delete a product that belongs."""
 
     product_to_retrieve = product.get(dci_context, product_id).json()
     product_etag = product_to_retrieve["product"]["etag"]
 
-    result = product.delete(dci_context_user_admin, product_id, etag=product_etag)
+    result = product.delete(dci_context_unauthorized_user, product_id, etag=product_etag)
 
     assert result.status_code == 401

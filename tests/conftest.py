@@ -39,6 +39,7 @@ from dciclient.v1.api import topic as api_topic
 from dciclient.v1.api import job as api_job
 from dciclient.v1.api import jobstate as api_jobstate
 from dciclient.v1.api import base as api_base
+from dciclient.v1.api.token_storage import TokenStorage
 from dciclient.v1.shell_commands import runner as dci_runner
 from dciclient.v1.shell_commands import cli
 from tests.shell_commands import utils
@@ -111,7 +112,7 @@ def server(db_provisioning, engine):
 def context_factory(
     server,
     db_provisioning,
-    login,
+    email,
     password,
     url="http://localhost",
     user_agent=None,
@@ -119,47 +120,70 @@ def context_factory(
     extras = {}
     if user_agent:
         extras["user_agent"] = user_agent
-    test_context = api_context.DciContext(url, login, password, **extras)
+
     flask_adapter = utils.FlaskHTTPAdapter(server.test_client())
+
+    # Create JWTContext with in-memory token storage
+    token_storage = TokenStorage(token_file=False)
+    test_context = api_context.JWTContext(url, token_storage=token_storage, **extras)
     test_context.session.mount(url, flask_adapter)
+
+    # Login to get and store tokens
+    test_context.login(email, password)
+
     return test_context
 
 
 @pytest.fixture
 def dci_context(server, db_provisioning):
-    return context_factory(server, db_provisioning, "admin", "admin")
+    return context_factory(server, db_provisioning, "admin@example.org", "admin")
 
 
 @pytest.fixture
-def dci_context_user_admin(server, db_provisioning):
-    return context_factory(server, db_provisioning, "user_admin", "user_admin")
+def dci_context_unauthorized_user(server, db_provisioning):
+    return context_factory(server, db_provisioning, "unauthorized_user@example.org", "unauthorized_user")
 
 
 @pytest.fixture
 def dci_context_user(server, db_provisioning):
-    return context_factory(server, db_provisioning, "user", "user")
+    return context_factory(server, db_provisioning, "user@example.org", "user")
 
 
 @pytest.fixture
 def dci_context_test_user(server, db_provisioning, test_user):
-    return context_factory(server, db_provisioning, "foo", "pass")
+    return context_factory(server, db_provisioning, "foo@example.org", "pass")
 
 
 @pytest.fixture
 def dci_context_product_owner(server, db_provisioning):
-    return context_factory(server, db_provisioning, "product_owner", "product_owner")
+    return context_factory(server, db_provisioning, "product_owner@example.org", "product_owner")
 
 
 @pytest.fixture
 def dci_context_other_user_agent(server, db_provisioning):
     return context_factory(
-        server, db_provisioning, "admin", "admin", user_agent="myagent-0.1"
+        server, db_provisioning, "admin@example.org", "admin", user_agent="myagent-0.1"
     )
 
 
 @pytest.fixture
 def dci_context_broken(server, db_provisioning):
-    test_context = api_context.DciContext("http://no_where.com", "admin", "admin")
+    import time
+    import json
+    import base64
+
+    # Create fake JWT tokens
+    def create_fake_token(exp_offset):
+        header = {"alg": "HS256", "typ": "JWT"}
+        payload = {"exp": int(time.time()) + exp_offset, "sub": "admin"}
+        header_b64 = base64.urlsafe_b64encode(json.dumps(header).encode()).decode().rstrip("=")
+        payload_b64 = base64.urlsafe_b64encode(json.dumps(payload).encode()).decode().rstrip("=")
+        return f"{header_b64}.{payload_b64}.fake_signature"
+
+    token_storage = TokenStorage(token_file=False)
+    token_storage.save_tokens(create_fake_token(3600), create_fake_token(86400))
+
+    test_context = api_context.JWTContext("http://no_where.com", token_storage=token_storage)
     test_context.last_job_id = 1
     return test_context
 
@@ -253,8 +277,8 @@ def runner(dci_context):
 
 
 @pytest.fixture
-def runner_user_admin(dci_context_user_admin):
-    return runner_factory(dci_context_user_admin)
+def runner_unauthorized_user(dci_context_unauthorized_user):
+    return runner_factory(dci_context_unauthorized_user)
 
 
 @pytest.fixture
