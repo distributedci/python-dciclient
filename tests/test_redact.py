@@ -223,6 +223,13 @@ class TestRedactContent:
         assert "mysecrettoken" not in result
         assert "auth: %s" % REDACTED in result
 
+    def test_redact_pull_secret_escaped_json(self):
+        secret = "dXNlcjpwYXNz"
+        content = '{\\"auths\\": {\\"quay.io\\": {\\"auth\\": \\"%s\\"}}}' % secret
+        result = redact.redact_content(content)
+        assert secret not in result
+        assert '\\"auth\\": \\"%s\\"' % REDACTED in result
+
     def test_returns_str(self):
         token = "ghp_" + "a" * 36
         result = redact.redact_content("token: %s" % token)
