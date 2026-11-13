@@ -32,8 +32,9 @@ DEFAULT_REDACT_PATTERNS = [
     # DCI credentials
     (r"remoteci/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}", REDACT_REPLACEMENT),
     (r"DCI\.[a-zA-Z0-9]{60}", REDACT_REPLACEMENT),
-    # Pull secrets (JSON and YAML)
+    # Pull secrets (JSON, YAML and escaped variants)
     (r'("auth"\s*:\s*")[^"]*(")', r"\1" + REDACT_REPLACEMENT + r"\2"),
+    (r'(\\+"auth\\+"\s*:\s*\\+")[^"\\]*(\\+")', r"\1" + REDACT_REPLACEMENT + r"\2"),
     (r"(auth:\s+)\S+", r"\1" + REDACT_REPLACEMENT),
 ]
 
