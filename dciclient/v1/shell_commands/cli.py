@@ -162,6 +162,13 @@ def parse_arguments(args, environment={}):
     p.add_argument("id")
     p.set_defaults(command="team-show")
 
+    p = subparsers.add_parser(
+        "team-attach-user", help="Attach a user to a team.", parents=[base_parser]
+    )
+    p.add_argument("id", help="Team ID")
+    p.add_argument("--user-id", required=True, help="User ID")
+    p.set_defaults(command="team-attach-user")
+
     # product commands
     p = subparsers.add_parser(
         "product-list", help="List all products.", parents=[base_parser]
