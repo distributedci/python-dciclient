@@ -40,3 +40,8 @@ def update(context, id, **kwargs):
 
 def delete(context, id, **kwargs):
     return base.delete(context, RESOURCE, id=id, **kwargs)
+
+
+def add_user(context, id, user_id):
+    uri = "%s/%s/%s/users/%s" % (context.dci_cs_api, RESOURCE, id, user_id)
+    return context.session.post(uri, timeout=base.HTTP_TIMEOUT)

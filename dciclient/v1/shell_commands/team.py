@@ -55,3 +55,7 @@ def delete(context, args):
 
 def show(context, args):
     return team.get(context, args.id)
+
+
+def attach_user(context, args):
+    return team.add_user(context, id=args.id, user_id=args.user_id)

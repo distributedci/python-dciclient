@@ -38,6 +38,7 @@ command_function = {
     "team-show": team.show,
     "team-update": team.update,
     "team-delete": team.delete,
+    "team-attach-user": team.attach_user,
     "product-list": product.list,
     "product-create": product.create,
     "product-show": product.show,

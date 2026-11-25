@@ -108,6 +108,7 @@ Commands:
   remoteci-reset-api-secret    Reset a remoteci api secret.
   remoteci-show                Show a remoteci.
   remoteci-update              Update a remoteci.
+  team-attach-user             Attach a user to a team.
   team-create                  Create a team.
   team-delete                  Delete a team.
   team-list                    List all teams.
@@ -122,6 +123,12 @@ Commands:
   user-list                    List all users.
   user-show                    Show a user.
   user-update                  Update a user.
+```
+
+To add an existing user to a team, use their IDs:
+
+```shell
+dcictl team-attach-user <team_id> --user-id <user_id>
 ```
 
 ## dci-vault
